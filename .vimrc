@@ -10,6 +10,8 @@ set incsearch				" show search results realtime
 set hlsearch				" highlight search matches
 set ts=2 sw=2 sts=2	" set tabs to be 2 spaces
 set expandtab				" tabs expand as spaces
+set splitbelow      " sp opens window below current window
+set splitright      " vsp opens window to the right of current window
 syntax enable				" enables syntax highlighting
 color zellner				" change the color scheme
 
@@ -17,7 +19,22 @@ color zellner				" change the color scheme
 "	- Gundo: simple undo tree viewer
 " - vim-stylus: stulus syntax highlighting
 " - vim-pug: pug (formerly Jade) syntax highlighting
+" - vim-syntastic: syntax checking
+" - vim-javascript-syntax: enhanced javascript syntax highlighting
 execute pathogen#infect()
+
+" syntastic recommended defaults
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" use google js checker for syntastic
+let g:syntastic_javascript_closurecompiler_path = "~/.vim/syntastic_checkers/closurecompiler.jar"
+let g:syntastic_javascript_checkers = ["closurecompiler"]
 
 " key remapping
 let mapleader=" "	" replace '\' as leader
@@ -29,8 +46,8 @@ noremap j gj
 " show Gundo undo tree visualization
 noremap <c-z> :GundoToggle<CR>
 " move a line up or down
-noremap <leader><Up> dd<Up><Up>p
-noremap <leader><Down> ddp
+noremap <leader>k ddkkp
+noremap <leader>j ddp
 " quickly open and source the .vimrc file
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
