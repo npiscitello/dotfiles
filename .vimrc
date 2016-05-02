@@ -1,6 +1,7 @@
 " misc. settings
 set number					" turn on line numbers
 set numberwidth=4		" sets width of number colum (allows up to 999 with no movement)
+set autoindent      " enable autoindenting
 set shiftround			" rounds auto indents to multiples of shiftwidth spaces
 set showmatch				" shows matching parens, etc.
 set matchtime=0			" time delay to start matching paren
@@ -40,7 +41,7 @@ let g:syntastic_javascript_checkers = ["closurecompiler"]
 let mapleader=" "	" replace '\' as leader
 " clear search highlighting
 nnoremap <leader><space> :nohlsearch<CR>
-" <Up> anid <Down> move by visual lines, not actual lines
+" move by visual lines, not actual lines
 noremap k gk
 noremap j gj
 " show Gundo undo tree visualization
@@ -51,19 +52,13 @@ noremap <leader>j ddp
 " quickly open and source the .vimrc file
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" break arrow key habit!
-noremap! <Up> <NOP>
-noremap! <Down> <NOP>
-noremap! <Left> <NOP>
-noremap! <Right> <NOP>
 " change windows with Ctl and nav keys
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
-" remap excape and break old habit
+" remap excape
 inoremap jk <esc>
-vnoremap jk <esc>
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
