@@ -16,6 +16,13 @@ set splitright      " vsp opens window to the right of current window
 syntax enable				" enables syntax highlighting
 color zellner				" change the color scheme
 
+" turns on filetype recognition
+filetype on
+filetype plugin on
+
+" Make tabs actual tabs in Makefiles
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
 " Enable pathogen. Current plugins:
 "	- Gundo: simple undo tree viewer
 " - vim-stylus: stulus syntax highlighting
@@ -33,9 +40,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" use google js checker for syntastic
+" use google js checker
 let g:syntastic_javascript_closurecompiler_path = "~/.vim/syntastic_checkers/closurecompiler.jar"
 let g:syntastic_javascript_checkers = ["closurecompiler"]
+
+" use Broadcom toolchain as a c/c++ checker - figure out how to use makefile
+let g:syntastic_c_compiler = ""
+let g:syntastic_cpp_compiler = ""
 
 " key remapping
 let mapleader=" "	" replace '\' as leader
