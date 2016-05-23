@@ -27,26 +27,8 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 "	- Gundo: simple undo tree viewer
 " - vim-stylus: stulus syntax highlighting
 " - vim-pug: pug (formerly Jade) syntax highlighting
-" - vim-syntastic: syntax checking
 " - vim-javascript-syntax: enhanced javascript syntax highlighting
 execute pathogen#infect()
-
-" syntastic recommended defaults
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" use google js checker
-let g:syntastic_javascript_closurecompiler_path = "~/.vim/syntastic_checkers/closurecompiler.jar"
-let g:syntastic_javascript_checkers = ["closurecompiler"]
-
-" use Broadcom toolchain as a c/c++ checker - figure out how to use makefile
-let g:syntastic_c_compiler = ""
-let g:syntastic_cpp_compiler = ""
 
 " key remapping
 let mapleader=" "	" replace '\' as leader
