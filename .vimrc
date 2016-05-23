@@ -25,8 +25,6 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " Enable pathogen. Current plugins:
 "	- Gundo: simple undo tree viewer
-" - vim-stylus: stulus syntax highlighting
-" - vim-pug: pug (formerly Jade) syntax highlighting
 " - vim-javascript-syntax: enhanced javascript syntax highlighting
 execute pathogen#infect()
 
