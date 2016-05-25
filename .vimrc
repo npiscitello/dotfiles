@@ -5,8 +5,9 @@ call vundle#begin()               " start Vundle
 Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 
 " Vundle plugins
-Plugin 'Valloric/YouCompleteMe'   " autocompletion and syntax checking
-Plugin 'sjl/gundo.vim'            " undo tree visualizer
+Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
+Plugin 'sjl/gundo.vim'                    " undo tree visualizer
+Plugin 'altercation/vim-colors-solarized' " color scheme
 
 " Finish declaring Vundle plugins
 call vundle#end()
@@ -32,7 +33,7 @@ set splitbelow                  " sp opens window below current window
 set splitright                  " vsp opens window to the right of current window
 syntax enable				            " enables syntax highlighting
 set background=dark             " use a dark theme
-colorscheme zellner             " choose a base16 colorscheme
+colorscheme solarized           " choose a base16 colorscheme
 
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
