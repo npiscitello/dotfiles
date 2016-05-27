@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
 Plugin 'sjl/gundo.vim'                    " undo tree visualizer
 Plugin 'altercation/vim-colors-solarized' " color scheme
+Plugin 'jelera/vim-javascript-syntax'     " syntax highlighting
 
 " Finish declaring Vundle plugins
 call vundle#end()
@@ -58,8 +59,13 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
-" remap excape
+" remap escape
 inoremap jk <esc>
+" remap keys around i
+nnoremap u <NOP>
+nnoremap o <NOP>
+" save and spawn a subshell
+nnoremap <leader>sh :wa<CR>:sh<CR>
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
