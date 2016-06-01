@@ -47,6 +47,10 @@ colorscheme solarized           " choose a base16 colorscheme
 "   %%: escaped percent symbol
 "   \ : escaped space
 set statusline=%-f\ %-y\ %-m%=%l\ %c\ %p%%
+"   0: never show status line
+"   1: only show status line with 2+ files open
+"   2: always show status line
+set laststatus=2
 
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
