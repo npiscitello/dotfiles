@@ -19,6 +19,7 @@ filetype plugin indent on
 " misc. settings
 set nocompatible                " be iMproved
 set number					            " turn on line numbers
+set ruler                       " turn on location feedback in statusbar
 set numberwidth=4		            " sets width of number colum (allows up to 999 with no movement)
 set autoindent                  " enable autoindenting
 set shiftround			            " rounds auto indents to multiples of shiftwidth spaces
