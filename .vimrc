@@ -46,7 +46,7 @@ colorscheme solarized           " choose a base16 colorscheme
 "   %p: percentage through file by line
 "   %%: escaped percent symbol
 "   \ : escaped space
-set statusline=%-f\ %-y\ %-m%=%l,\ %c,\ %p%%
+set statusline=%-f\ %-y\ %-m%=%l\ %c\ %p%%
 
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
