@@ -19,7 +19,6 @@ filetype plugin indent on
 " misc. settings
 set nocompatible                " be iMproved
 set number					            " turn on line numbers
-set ruler                       " turn on location feedback in statusbar
 set numberwidth=4		            " sets width of number colum (allows up to 999 with no movement)
 set autoindent                  " enable autoindenting
 set shiftround			            " rounds auto indents to multiples of shiftwidth spaces
@@ -36,6 +35,18 @@ set splitright                  " vsp opens window to the right of current windo
 syntax enable				            " enables syntax highlighting
 set background=dark             " use a dark theme
 colorscheme solarized           " choose a base16 colorscheme
+
+" setup statusline:
+"   %-f: left justified relative file path
+"   %-y: left justified recognized file type
+"   %-m: modified status (not present, [+], or [-] for ro file)
+"   %=: left justified / right justified content split
+"   %l: line number
+"   %c: column number
+"   %p: percentage through file by line
+"   %%: escaped percent symbol
+"   \ : escaped space
+set statusline=%-f\ %-y\ %-m%=%l,\ %c,\ %p%%
 
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
@@ -67,6 +78,8 @@ nnoremap u <NOP>
 nnoremap o <NOP>
 " save and spawn a subshell
 nnoremap <leader>sh :wa<CR>:sh<CR>
+" save file
+nnoremap <leader>w :w<CR>
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
