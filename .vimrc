@@ -80,10 +80,12 @@ inoremap jk <esc>
 " remap keys around i
 nnoremap u <NOP>
 nnoremap o <NOP>
+" save file
+nnoremap <leader>ww :w<CR>
 " save and spawn a subshell
 nnoremap <leader>sh :wa<CR>:sh<CR>
-" save file
-nnoremap <leader>w :w<CR>
+" save and exit
+nnoremap <leader>wq :w<CR>:q<CR>
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
