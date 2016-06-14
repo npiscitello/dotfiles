@@ -32,6 +32,8 @@ set ts=2 sw=2 sts=2	            " set tabs to be 2 spaces
 set expandtab				            " tabs expand as spaces
 set splitbelow                  " sp opens window below current window
 set splitright                  " vsp opens window to the right of current window
+set ignorecase									" needed to use smartcase
+set smartcase										" use case-insensitive search unless a capital letter is typed
 syntax enable				            " enables syntax highlighting
 set background=dark             " use a dark theme
 colorscheme solarized           " choose a base16 colorscheme
@@ -85,7 +87,15 @@ nnoremap <leader>ww :w<CR>
 " save and spawn a subshell
 nnoremap <leader>sh :wa<CR>:sh<CR>
 " save and exit
-nnoremap <leader>wq :w<CR>:q<CR>
+nnoremap <leader>wq :x<CR>
+" exit without saving
+nnoremap <leader>qq :q<CR>
+" really exit without saving
+nnoremap <leader>quit :q!<CR>
+" start a vertical split
+nnoremap <leader>vs :vs 
+" start a horizontal split
+nnoremap <leader>sp :sp 
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
