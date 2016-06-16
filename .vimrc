@@ -16,6 +16,9 @@ call vundle#end()
 " turns on filetype recognition
 filetype plugin indent on
 
+" setup YCM
+let g:ycm_server_python_interpreter="/usr/bin/python2"
+
 " misc. settings
 set nocompatible                " be iMproved
 set number					            " turn on line numbers
