@@ -33,6 +33,7 @@ set incsearch				            " show search results realtime
 set hlsearch				            " highlight search matches
 set ts=2 sw=2 sts=2	            " set tabs to be 2 spaces
 set expandtab				            " tabs expand as spaces
+set textwidth=100               " wrap lines to a reasonable width
 set splitbelow                  " sp opens window below current window
 set splitright                  " vsp opens window to the right of current window
 set ignorecase									" needed to use smartcase
@@ -62,19 +63,11 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " key remapping
 let mapleader=" "	" replace '\' as leader
-" clear search highlighting
-nnoremap <leader><space> :nohlsearch<CR>
 " move by visual lines, not actual lines
 noremap k gk
 noremap j gj
 " show Gundo undo tree visualization
 noremap <c-z> :GundoToggle<CR>
-" move a line up or down
-noremap <leader>k ddkkp
-noremap <leader>j ddp
-" quickly open and source the .vimrc file
-nnoremap <leader>ev :split $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
 " change windows with Ctl and nav keys
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
@@ -85,6 +78,19 @@ inoremap jk <esc>
 " remap keys around i
 nnoremap u <NOP>
 nnoremap o <NOP>
+" disable increment/decrement numbers
+nnoremap <C-A> <NOP>
+nnoremap <C-X> <NOP>
+
+" leader aliases
+" clear search highlighting
+nnoremap <leader><space> :nohlsearch<CR>
+" move a line up or down
+noremap <leader>k ddkkp
+noremap <leader>j ddp
+" quickly open and source the .vimrc file
+nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 " save file
 nnoremap <leader>ww :w<CR>
 " save and spawn a subshell
@@ -99,6 +105,8 @@ nnoremap <leader>quit :q!<CR>
 nnoremap <leader>vs :vs 
 " start a horizontal split
 nnoremap <leader>sp :sp 
+" start a search and replace
+nnoremap <leader>ss :%s/
 
 " Abbreviations
 iabbrev @@ nb.piscitello@gmail.com
