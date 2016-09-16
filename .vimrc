@@ -7,8 +7,6 @@ Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 " Vundle plugins
 Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
 Plugin 'sjl/gundo.vim'                    " undo tree visualizer
-Plugin 'altercation/vim-colors-solarized' " color scheme
-Plugin 'jelera/vim-javascript-syntax'     " syntax highlighting
 
 " Finish declaring Vundle plugins
 call vundle#end()
@@ -20,27 +18,27 @@ filetype plugin indent on
 let g:ycm_server_python_interpreter="/usr/bin/python2"
 
 " misc. settings
-set nocompatible                " be iMproved
-set number					            " turn on line numbers
-set numberwidth=4		            " sets width of number colum (allows up to 999 with no movement)
-set autoindent                  " enable autoindenting
-set shiftround			            " rounds auto indents to multiples of shiftwidth spaces
-set showmatch				            " shows matching parens, etc.
-set matchtime=0			            " time delay to start matching paren
-set shiftwidth=5		            " specifies the auto indent width
-set nowrap					            " disables line wrapping
-set incsearch				            " show search results realtime
-set hlsearch				            " highlight search matches
-set ts=2 sw=2 sts=2	            " set tabs to be 2 spaces
-set expandtab				            " tabs expand as spaces
-set textwidth=100               " wrap lines to a reasonable width
-set splitbelow                  " sp opens window below current window
-set splitright                  " vsp opens window to the right of current window
-set ignorecase									" needed to use smartcase
-set smartcase										" use case-insensitive search unless a capital letter is typed
-syntax enable				            " enables syntax highlighting
-set background=dark             " use a dark theme
-colorscheme solarized           " choose a base16 colorscheme
+set nocompatible                      " be iMproved
+set number					                  " turn on line numbers
+set numberwidth=4		                  " sets width of number colum (allows up to 999 with no movement)
+set autoindent                        " enable autoindenting
+set shiftwidth=5		                  " specifies the auto indent width
+set shiftround			                  " rounds auto indents to multiples of shiftwidth spaces
+set showmatch				                  " shows matching parens, etc.
+set matchtime=0			                  " time delay to start matching paren
+set nowrap					                  " disables line wrapping
+set incsearch				                  " show search results realtime
+set hlsearch				                  " highlight search matches
+set ts=2 sw=2 sts=2	                  " set tabs to be 2 spaces
+set expandtab				                  " tabs expand as spaces
+set textwidth=100                     " wrap lines to a reasonable width
+set splitbelow                        " sp opens window below current window
+set splitright                        " vsp opens window to the right of current window
+set ignorecase									      " needed to use smartcase
+set smartcase										      " use case-insensitive search unless a capital letter is typed
+syntax enable				                  " enables syntax highlighting
+set cursorline                        " enable highlighting the current line
+hi CursorLine cterm=NONE ctermbg=16   "set highlighting color for current line highlighting
 
 " setup statusline:
 "   %-f: left justified relative file path
