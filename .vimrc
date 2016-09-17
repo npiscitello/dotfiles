@@ -16,7 +16,6 @@ call vundle#end()
 filetype plugin indent on
 
 " setup YCM
-let g:ycm_server_python_interpreter="/usr/bin/python2"
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 " misc. settings
