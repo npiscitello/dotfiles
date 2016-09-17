@@ -6,6 +6,7 @@ Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 
 " Vundle plugins
 Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
+Plugin 'SirVer/ultisnips'                 " snippet code for YCM
 Plugin 'sjl/gundo.vim'                    " undo tree visualizer
 
 " Finish declaring Vundle plugins
@@ -38,7 +39,7 @@ set ignorecase									      " needed to use smartcase
 set smartcase										      " use case-insensitive search unless a capital letter is typed
 syntax enable				                  " enables syntax highlighting
 set cursorline                        " enable highlighting the current line
-hi CursorLine cterm=NONE ctermbg=16   "set highlighting color for current line highlighting
+hi CursorLine cterm=none ctermbg=16   " set highlighting color for current line highlighting
 
 " setup statusline:
 "   %-f: left justified relative file path
