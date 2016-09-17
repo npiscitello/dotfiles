@@ -40,6 +40,7 @@ set smartcase										      " use case-insensitive search unless a capital lett
 syntax enable				                  " enables syntax highlighting
 set cursorline                        " enable highlighting the current line
 hi CursorLine cterm=none ctermbg=16   " set highlighting color for current line highlighting
+hi Search cterm=none ctermbg=226 ctermfg=16  " highlight search matches
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -51,7 +52,7 @@ hi CursorLine cterm=none ctermbg=16   " set highlighting color for current line 
 "   %p: percentage through file by line
 "   %%: escaped percent symbol
 "   \ : escaped space
-set statusline=%-f\ %-y\ %-m%=%l\ %c\ %p%%
+set statusline=%-f\ %-y\ %-m%=L%l\ C%c\ %p%%
 "   0: never show status line
 "   1: only show status line with 2+ files open
 "   2: always show status line
