@@ -37,10 +37,13 @@ set splitbelow                        " sp opens window below current window
 set splitright                        " vsp opens window to the right of current window
 set ignorecase									      " needed to use smartcase
 set smartcase										      " use case-insensitive search unless a capital letter is typed
-syntax enable				                  " enables syntax highlighting
 set cursorline                        " enable highlighting the current line
-hi CursorLine cterm=none ctermbg=16   " set highlighting color for current line highlighting
-hi Search cterm=none ctermbg=226 ctermfg=16  " highlight search matches
+syntax enable				                  " enables syntax highlighting
+
+" highlighting settings
+hi CursorLine cterm=none ctermbg=16                 " set highlighting color for current line highlighting
+hi Search cterm=none ctermbg=226 ctermfg=16         " highlight search matches
+hi Pmenu cterm=none ctermfg=white ctermbg=16        " highlight YCM completion window subshell
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -107,6 +110,3 @@ nnoremap <leader>vs :vs
 nnoremap <leader>sp :sp 
 " start a search and replace
 nnoremap <leader>ss :%s/
-
-" Abbreviations
-iabbrev @@ nb.piscitello@gmail.com
