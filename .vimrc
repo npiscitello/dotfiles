@@ -5,8 +5,6 @@ call vundle#begin()               " start Vundle
 Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 
 " Vundle plugins
-Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
-Plugin 'SirVer/ultisnips'                 " snippet code for YCM
 Plugin 'sjl/gundo.vim'                    " undo tree visualizer
 
 " Finish declaring Vundle plugins
@@ -14,9 +12,6 @@ call vundle#end()
 
 " turns on filetype recognition
 filetype plugin indent on
-
-" setup YCM
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 " misc. settings
 set nocompatible                      " be iMproved
@@ -43,12 +38,6 @@ syntax enable				                  " enables syntax highlighting
 " highlighting settings
 hi CursorLine cterm=none ctermbg=16                   " set highlighting color for current line highlighting
 hi Search cterm=none ctermbg=226 ctermfg=16           " highlight search matches in yellow
-hi Pmenu cterm=none ctermfg=white ctermbg=16          " highlight YCM completion window subshell
-hi SignColumn ctermbg=8                               " set the empty gutter color
-hi YcmWarningSign ctermbg=darkyellow ctermfg=white    " highlight YCM C syntax warnings in VIM gutter
-hi YcmWarningSection ctermbg=darkyellow ctermfg=white " highlight YCM C syntax warnings
-hi YcmErrorSign ctermbg=darkred ctermfg=white         " highlight YCM C syntax errors in VIM gutter
-hi YcmErrorSection ctermbg=darkred ctermfg=white      " highlight YCM C syntax errors
 
 " setup statusline:
 "   %-f: left justified relative file path
