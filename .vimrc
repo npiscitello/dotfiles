@@ -41,14 +41,23 @@ set cursorline                        " enable highlighting the current line
 syntax enable				                  " enables syntax highlighting
 
 " highlighting settings
-hi CursorLine cterm=none ctermbg=16                   " set highlighting color for current line highlighting
-hi Search cterm=none ctermbg=226 ctermfg=16           " highlight search matches in yellow
-hi Pmenu cterm=none ctermfg=white ctermbg=16          " highlight YCM completion window subshell
-hi SignColumn ctermbg=8                               " set the empty gutter color
-hi YcmWarningSign ctermbg=darkyellow ctermfg=white    " highlight YCM C syntax warnings in VIM gutter
-hi YcmWarningSection ctermbg=darkyellow ctermfg=white " highlight YCM C syntax warnings
-hi YcmErrorSign ctermbg=darkred ctermfg=white         " highlight YCM C syntax errors in VIM gutter
-hi YcmErrorSection ctermbg=darkred ctermfg=white      " highlight YCM C syntax errors
+hi CursorLine cterm=none ctermbg=16               " set highlighting color for current line highlighting
+hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
+hi Pmenu cterm=none ctermfg=7 ctermbg=16          " highlight YCM completion window subshell
+hi SignColumn ctermbg=8                           " set the empty gutter color
+hi Folded ctermbg=13 ctermfg=7                    " set color for folded indicator (for diff)
+hi! link FoldColumn Folded                        " make foldedcolumn copy folded (for diff)
+hi YcmWarningSign ctermbg=3 ctermfg=7             " highlight YCM syntax warnings
+hi! link YcmWarningSection YcmWarningSign         " highlight YCM syntax warnings
+hi YcmErrorSign ctermbg=1 ctermfg=7               " highlight YCM syntax errors
+hi! link YcmErrorSection YcmErrorSign             " highlight YCM syntax errors
+hi DiffAdd cterm=none ctermbg=2 ctermfg=7         " highlight vimdiff added lines
+hi DiffDelete cterm=none ctermbg=1 ctermfg=7      " highlight vimdiff deleted lines
+hi DiffChange cterm=none ctermbg=4 ctermfg=7      " highlight vimdiff changed lines
+hi DiffText cterm=bold ctermbg=7 ctermfg=4        " highlight vimdiff changed text (just reversed change highlighting)
+hi VertSplit cterm=bold ctermbg=8 ctermfg=7       " make the vertical separator less intrusive
+hi StatusLine cterm=bold ctermbg=8 ctermfg=7      " make the status line less intrusive
+hi StatusLineNC cterm=none ctermbg=8 ctermfg=16   " make the inactive status lines less intrusive
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -97,7 +106,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 noremap <leader>k ddkkp
 noremap <leader>j ddp
 " quickly open and source the .vimrc file
-nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>ev :vs $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " save file
 nnoremap <leader>ww :w<CR>
