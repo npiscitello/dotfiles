@@ -36,8 +36,18 @@ set cursorline                        " enable highlighting the current line
 syntax enable				                  " enables syntax highlighting
 
 " highlighting settings
-hi CursorLine cterm=none ctermbg=16                   " set highlighting color for current line highlighting
-hi Search cterm=none ctermbg=226 ctermfg=16           " highlight search matches in yellow
+hi CursorLine cterm=none ctermbg=16               " set highlighting color for current line highlighting
+hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
+hi SignColumn ctermbg=8                           " set the empty gutter color
+hi Folded ctermbg=13 ctermfg=7                    " set color for folded indicator (for diff)
+hi! link FoldColumn Folded                        " make foldedcolumn copy folded (for diff)
+hi DiffAdd cterm=none ctermbg=2 ctermfg=7         " highlight vimdiff added lines
+hi DiffDelete cterm=none ctermbg=1 ctermfg=7      " highlight vimdiff deleted lines
+hi DiffChange cterm=none ctermbg=4 ctermfg=7      " highlight vimdiff changed lines
+hi DiffText cterm=bold ctermbg=7 ctermfg=4        " highlight vimdiff changed text (just reversed change highlighting)
+hi VertSplit cterm=bold ctermbg=8 ctermfg=7       " make the vertical separator less intrusive
+hi StatusLine cterm=bold ctermbg=8 ctermfg=7      " make the status line less intrusive
+hi StatusLineNC cterm=none ctermbg=8 ctermfg=16   " make the inactive status lines less intrusive
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -86,7 +96,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 noremap <leader>k ddkkp
 noremap <leader>j ddp
 " quickly open and source the .vimrc file
-nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>ev :vs $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " save file
 nnoremap <leader>ww :w<CR>
@@ -104,5 +114,3 @@ nnoremap <leader>vs :vs
 nnoremap <leader>sp :sp 
 " start a search and replace
 nnoremap <leader>ss :%s/
-" re-compile for YCM errors
-nnoremap <leader>yr :YcmForceCompileAndDiagnostics<CR><ENTER>:echo "Recompiling for YCM - blocks VIM"<CR>
