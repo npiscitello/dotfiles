@@ -126,3 +126,5 @@ nnoremap <leader>sp :sp
 nnoremap <leader>ss :%s/
 " re-compile for YCM errors
 nnoremap <leader>yr :YcmForceCompileAndDiagnostics<CR><ENTER>:echo "Recompiling for YCM - blocks VIM"<CR>
+" trigger YCM FixIt
+nnoremap <leader>fx :YcmCompleter FixIt<CR>
