@@ -15,8 +15,12 @@ call vundle#end()
 " turns on filetype recognition
 filetype plugin indent on
 
-" setup YCM
+" YCM - default info for syntax completion
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+" YCM - shorten the time resting before background processes run
+let g:ycm_allow_changing_updatetime = 1
+" YCM - load syntax completion info without asking
+let g:ycm_confirm_extra_conf = 0
 
 " misc. settings
 set nocompatible                      " be iMproved
