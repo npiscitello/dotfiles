@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
 Plugin 'SirVer/ultisnips'                 " snippet code for YCM
 Plugin 'sjl/gundo.vim'                    " undo tree visualizer
+Plugin 'lervag/vimtex'                    " latex plugin
 
 " Finish declaring Vundle plugins
 call vundle#end()
