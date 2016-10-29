@@ -23,6 +23,11 @@ let g:ycm_allow_changing_updatetime = 1
 " YCM - load syntax completion info without asking
 let g:ycm_confirm_extra_conf = 0
 
+" vimtex - ignore launch errors
+let g:vimtex_echo_ignore_wait = 1
+" vimtex - make sure to recognize '.tex' as latex
+let g:tex_flavor = 'latex'
+
 " misc. settings
 set nocompatible                      " be iMproved
 set number					                  " turn on line numbers
@@ -83,8 +88,12 @@ set laststatus=2
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
+" start compile in latex docs
+autocmd FileType tex VimtexCompile
+
 " key remapping
 let mapleader=" "	" replace '\' as leader
+let maplocalleader=" " " replace local leader
 " move by visual lines, not actual lines
 noremap k gk
 noremap j gj
