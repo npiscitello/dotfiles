@@ -50,7 +50,7 @@ colorscheme solarized
 
 " highlighting settings
 "hi CursorLine cterm=none ctermbg=16               " set highlighting color for current line highlighting
-"hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
+hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
 "hi Folded ctermbg=13 ctermfg=7                    " set color for folded indicator (for diff)
 "hi! link FoldColumn Folded                        " make foldedcolumn copy folded (for diff)
 hi SignColumn ctermbg=8                           " set the empty gutter color
@@ -60,7 +60,7 @@ hi SignColumn ctermbg=8                           " set the empty gutter color
 "hi DiffText cterm=bold ctermbg=7 ctermfg=4        " highlight vimdiff changed text (just reversed change highlighting)
 hi VertSplit cterm=bold ctermbg=0 ctermfg=7       " make the vertical separator less intrusive
 hi StatusLine cterm=bold ctermbg=0 ctermfg=7      " make the status line less intrusive
-hi StatusLineNC cterm=none ctermbg=0 ctermfg=10  " make the inactive status lines less intrusive
+hi StatusLineNC cterm=none ctermbg=0 ctermfg=10   " make the inactive status lines less intrusive
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -113,9 +113,11 @@ nnoremap J }
 "nnoremap J <C-d>
 "nnoremap K <C-b>
 "nnoremap J <C-f>
-" remap capital b and w to beginning/end of line
+" remap capital b and w to beginning/end of line in normal and visual mode
 nnoremap B 0
+vnoremap B 0
 nnoremap W $
+vnoremap W $
 
 " leader aliases
 " clear search highlighting
