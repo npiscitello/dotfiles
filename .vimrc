@@ -4,7 +4,6 @@ set rtp+=~/.vim/bundle/Vundle.vim " tell Vim to use Vundle
 call vundle#begin()               " start Vundle
 Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 " Vundle plugins
-Plugin 'SirVer/ultisnips'                   " snippet code for YCM
 Plugin 'sjl/gundo.vim'                      " undo tree visualizer
 Plugin 'lervag/vimtex'                      " latex plugin
 Plugin 'altercation/vim-colors-solarized'   " color scheme
