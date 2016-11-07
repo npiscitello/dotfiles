@@ -21,6 +21,8 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_allow_changing_updatetime = 1
 " YCM - load syntax completion info without asking
 let g:ycm_confirm_extra_conf = 0
+" YCM - populate location list with errors and warnings
+let g:ycm_always_populate_location_list = 1
 
 " misc. settings
 set nocompatible                      " be iMproved
@@ -132,3 +134,6 @@ nnoremap <leader>ss :%s/
 nnoremap <leader>yr :YcmForceCompileAndDiagnostics<CR><ENTER>:echo "Recompiling for YCM - blocks VIM"<CR>
 " trigger YCM FixIt
 nnoremap <leader>fx :YcmCompleter FixIt<CR>
+" jump to next/previous location
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprevious<CR>
