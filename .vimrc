@@ -3,11 +3,13 @@ filetype off                      " required to start Vundle
 set rtp+=~/.vim/bundle/Vundle.vim " tell Vim to use Vundle
 call vundle#begin()               " start Vundle
 Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
-
 " Vundle plugins
-Plugin 'Valloric/YouCompleteMe'           " autocompletion and syntax checking
-Plugin 'SirVer/ultisnips'                 " snippet code for YCM
-Plugin 'sjl/gundo.vim'                    " undo tree visualizer
+Plugin 'Valloric/YouCompleteMe'             " autocompletion and syntax checking
+Plugin 'SirVer/ultisnips'                   " snippet code for YCM
+Plugin 'sjl/gundo.vim'                      " undo tree visualizer
+Plugin 'lervag/vimtex'                      " latex plugin
+Plugin 'altercation/vim-colors-solarized'   " color scheme
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'  " intelligent relative/absolute line numbering
 
 " Finish declaring Vundle plugins
 call vundle#end()
@@ -23,6 +25,11 @@ let g:ycm_allow_changing_updatetime = 1
 let g:ycm_confirm_extra_conf = 0
 " YCM - populate location list with errors and warnings
 let g:ycm_always_populate_location_list = 1
+
+" vimtex - ignore launch errors
+let g:vimtex_echo_ignore_wait = 1
+" vimtex - make sure to recognize '.tex' as latex
+let g:tex_flavor = 'latex'
 
 " misc. settings
 set nocompatible                      " be iMproved
@@ -46,24 +53,29 @@ set smartcase										      " use case-insensitive search unless a capital lett
 set cursorline                        " enable highlighting the current line
 syntax enable				                  " enables syntax highlighting
 
+" enable solarized - uncomment next line to use 256 color mode
+" let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
 " highlighting settings
-hi CursorLine cterm=none ctermbg=16               " set highlighting color for current line highlighting
+"hi CursorLine cterm=none ctermbg=16               " set highlighting color for current line highlighting
 hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
 hi Pmenu cterm=none ctermfg=7 ctermbg=16          " highlight YCM completion window subshell
+"hi Folded ctermbg=13 ctermfg=7                    " set color for folded indicator (for diff)
+"hi! link FoldColumn Folded                        " make foldedcolumn copy folded (for diff)
 hi SignColumn ctermbg=8                           " set the empty gutter color
-hi Folded ctermbg=13 ctermfg=7                    " set color for folded indicator (for diff)
-hi! link FoldColumn Folded                        " make foldedcolumn copy folded (for diff)
 hi YcmWarningSign ctermbg=3 ctermfg=7             " highlight YCM syntax warnings
 hi! link YcmWarningSection YcmWarningSign         " highlight YCM syntax warnings
 hi YcmErrorSign ctermbg=1 ctermfg=7               " highlight YCM syntax errors
 hi! link YcmErrorSection YcmErrorSign             " highlight YCM syntax errors
-hi DiffAdd cterm=none ctermbg=2 ctermfg=7         " highlight vimdiff added lines
-hi DiffDelete cterm=none ctermbg=1 ctermfg=7      " highlight vimdiff deleted lines
-hi DiffChange cterm=none ctermbg=4 ctermfg=7      " highlight vimdiff changed lines
-hi DiffText cterm=bold ctermbg=7 ctermfg=4        " highlight vimdiff changed text (just reversed change highlighting)
-hi VertSplit cterm=bold ctermbg=8 ctermfg=7       " make the vertical separator less intrusive
-hi StatusLine cterm=bold ctermbg=8 ctermfg=7      " make the status line less intrusive
-hi StatusLineNC cterm=none ctermbg=8 ctermfg=16   " make the inactive status lines less intrusive
+"hi DiffAdd cterm=none ctermbg=2 ctermfg=7         " highlight vimdiff added lines
+"hi DiffDelete cterm=none ctermbg=1 ctermfg=7      " highlight vimdiff deleted lines
+"hi DiffChange cterm=none ctermbg=4 ctermfg=7      " highlight vimdiff changed lines
+"hi DiffText cterm=bold ctermbg=7 ctermfg=4        " highlight vimdiff changed text (just reversed change highlighting)
+hi VertSplit cterm=bold ctermbg=0 ctermfg=7       " make the vertical separator less intrusive
+hi StatusLine cterm=bold ctermbg=0 ctermfg=7      " make the status line less intrusive
+hi StatusLineNC cterm=none ctermbg=0 ctermfg=10   " make the inactive status lines less intrusive
 
 " setup statusline:
 "   %-f: left justified relative file path
@@ -84,8 +96,12 @@ set laststatus=2
 " Make tabs actual tabs in Makefiles
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
+" start compile in latex docs
+autocmd FileType tex VimtexCompile
+
 " key remapping
 let mapleader=" "	" replace '\' as leader
+let maplocalleader=" " " replace local leader
 " move by visual lines, not actual lines
 noremap k gk
 noremap j gj
@@ -104,6 +120,19 @@ nnoremap o <NOP>
 " disable increment/decrement numbers
 nnoremap <C-A> <NOP>
 nnoremap <C-X> <NOP>
+" remap capital j and k to paragraph movement
+" (commented below are half and full page movement mappings)
+nnoremap K {
+nnoremap J }
+"nnoremap K <C-u>
+"nnoremap J <C-d>
+"nnoremap K <C-b>
+"nnoremap J <C-f>
+" remap capital b and w to beginning/end of line in normal and visual mode
+nnoremap B 0
+vnoremap B 0
+nnoremap W $
+vnoremap W $
 
 " leader aliases
 " clear search highlighting
