@@ -20,6 +20,9 @@ let g:vimtex_echo_ignore_wait = 1
 " vimtex - make sure to recognize '.tex' as latex
 let g:tex_flavor = 'latex'
 
+" don't enforce column rules in fortran
+let fortran_free_source=1
+
 " misc. settings
 set nocompatible                      " be iMproved
 set number					                  " turn on line numbers
