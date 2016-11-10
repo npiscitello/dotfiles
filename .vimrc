@@ -123,7 +123,9 @@ nnoremap <C-X> <NOP>
 " remap capital j and k to paragraph movement
 " (commented below are half and full page movement mappings)
 nnoremap K {
+vnoremap K {
 nnoremap J }
+vnoremap J }
 "nnoremap K <C-u>
 "nnoremap J <C-d>
 "nnoremap K <C-b>
