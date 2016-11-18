@@ -25,6 +25,8 @@ let g:ycm_allow_changing_updatetime = 1
 let g:ycm_confirm_extra_conf = 0
 " YCM - populate location list with errors and warnings
 let g:ycm_always_populate_location_list = 1
+" don't spin up the 'Scratch' window on an autocompletion
+set completeopt-=preview
 
 " vimtex - ignore launch errors
 let g:vimtex_echo_ignore_wait = 1
