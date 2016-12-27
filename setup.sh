@@ -1,17 +1,21 @@
 # get the location of the script from the call
 REPO_DIR=$(dirname $(readlink -f "$0"))
 
-# the command used to link configs to the repo folder
-SYMLINK_CMD="ln -vfs"
+# functions for logging warnings and errors
+info () { echo -e "\x1B[32m[INF] " $@ "\x1B[0m"; }
+warn () { echo -e "\x1B[33m[WRN] " $@ "\x1B[0m"; }
+error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
+
+# various useful commands
+symlink () { if [ -e $2 ]; then warn $2 "already exists, skipping"; else ln -vs $1 $2; fi }
 MKDIR_CMD="mkdir -vp"
-ECHO_CMD="echo -e"
 
 # set up vim
-$ECHO_CMD "\x1B[32mSetting up Vim config...\x1B[0m"
-$SYMLINK_CMD $REPO_DIR/vim ~/.vim
-$SYMLINK_CMD $REPO_DIR/vim/.vimrc ~/.vimrc
+info "Setting up Vim config..."
+symlink $REPO_DIR/vim ~/.vim
+symlink $REPO_DIR/vim/.vimrc ~/.vimrc
 
 # set up sway
-$ECHO_CMD "\x1B[32mSetting up Sway config...\x1B[0m"
+info "Setting up Sway config..."
 $MKDIR_CMD ~/.config
-$SYMLINK_CMD $REPO_DIR/sway ~/.config/sway
+symlink $REPO_DIR/sway ~/.config/sway
