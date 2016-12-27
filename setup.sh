@@ -1,3 +1,8 @@
+#<TODO> Allow user to cherry-pick configs they want to install
+# (possible implementation: test all possible targets against each argument, only
+#   run the target if the arg matches the name. Basically, a Bash makefile...)
+# another possibility: actually make it a makefile!
+
 # get the location of the script from the call
 REPO_DIR=$(dirname $(readlink -f "$0"))
 
