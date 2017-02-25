@@ -5,6 +5,8 @@
 
 # get the location of the script from the call
 REPO_DIR=$(dirname $(readlink -f "$0"))
+ARGS="$@"
+HELP=1
 
 # functions for logging warnings and errors
 info () { echo -e "\x1B[32m[INF] " $@ "\x1B[0m"; }
@@ -16,11 +18,27 @@ symlink () { if [ -e $2 ]; then warn $2 "already exists, skipping"; else ln -vs 
 MKDIR_CMD="mkdir -vp"
 
 # set up vim
-info "Setting up Vim config..."
-symlink $REPO_DIR/vim ~/.vim
-symlink $REPO_DIR/vim/.vimrc ~/.vimrc
+if [[ $ARGS =~ vim ]] || [[ $ARGS =~ all ]]; then
+  info "Setting up Vim config..."
+  symlink $REPO_DIR/vim ~/.vim
+  symlink $REPO_DIR/vim/.vimrc ~/.vimrc
+  info "Don't forget to compile YCM!"
+  HELP=0
+fi
 
 # set up sway
-info "Setting up Sway config..."
-$MKDIR_CMD ~/.config
-symlink $REPO_DIR/sway ~/.config/sway
+if [[ $ARGS =~ sway ]] || [[ $ARGS =~ all ]]; then
+  info "Setting up Sway config..."
+  $MKDIR_CMD ~/.config
+  symlink $REPO_DIR/sway ~/.config/sway
+  HELP=0
+fi
+
+# help text, if nothing above ran
+if [ $HELP == 1 ]; then
+  info "npiscitello's configuration installer"
+  info "args:"
+  info "\tall - install all configs (as if you passed every argument below)"
+  info "\tvim - installs the ~/.vim directory and the ~/.vimrc file"
+  info "\tswy - installs the Sway setup in the ~/.config directory"
+fi
