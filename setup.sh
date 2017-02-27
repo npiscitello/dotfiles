@@ -15,11 +15,10 @@ error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
 
 # various useful commands
 MKDIR_CMD="mkdir -vp"
-LN_CMD="ln -v"
-RM_CMD="rm -r"
-# we use hardlinks b/c they take up less space, are faster, and we don't need symlink benefits
-hardlink () { if [[ -e $2 ]]; then warn $2 "already exists, skipping"; else $LN_CMD $1 $2; fi }
-hardlink_sudo () { if sudo bash -c "[[ -e $2 ]]"; then warn $2 "already exists, skipping"; else sudo $LN_CMD $1 $2; fi }
+LN_CMD="ln -vs"
+RM_CMD="rm -vr"
+symlink () { if [[ -e $2 ]]; then warn $2 "already exists, skipping"; else $LN_CMD $1 $2; fi }
+symlink_sudo () { if sudo bash -c "[[ -e $2 ]]"; then warn $2 "already exists, skipping"; else sudo $LN_CMD $1 $2; fi }
 remove () { if [[ -e $1 ]]; then $RM_CMD $1; else warn $1 "doesn't exist, skipping"; fi }
 remove_sudo () { if sudo bash -c "[[ -e $1 ]]"; then sudo $RM_CMD $1; else warn $1 "doesn't exist, skipping"; fi }
 
@@ -29,7 +28,7 @@ helptext () {
   info "usage: ./setup.sh [ action ] [ component ] [ component ] ..."
   info ""
   info "actions (exactly one must be present):"
-  info "\tinstall - hardlink relevant files to the filesystem"
+  info "\tinstall - symlink relevant files to the filesystem"
   info "\tremove  - delete configs of the specified components"
   info "\t\tWARNING: this tool will not differentiate between configs installed"
   info "\t\tby itself and custom user configs. Use with caution!"
@@ -44,6 +43,9 @@ helptext () {
 
 # check that enough arguments were passed
 if [[ $# -lt 2 ]]; then
+  error ""
+  error "Not enough arguments!"
+  error ""
   helptext 1
 fi
 
@@ -53,6 +55,9 @@ if [[ "$1" == "install" ]]; then
 elif [[ "$1" == "remove" ]]; then
   INSTALL=false
 else
+  error ""
+  error "Invalid action!"
+  error ""
   helptext 2
 fi
 
@@ -60,8 +65,8 @@ fi
 if [[ $ARGS =~ vim ]] || [[ $ARGS =~ all ]]; then
   if $INSTALL; then
     info "Installing Vim config..."
-    hardlink $REPO_DIR/vim ~/.vim
-    hardlink $REPO_DIR/vim/.vimrc ~/.vimrc
+    symlink $REPO_DIR/vim ~/.vim
+    symlink $REPO_DIR/vim/.vimrc ~/.vimrc
     info "Don't forget to compile YCM!"
   else
     info "Removing Vim config..."
@@ -75,7 +80,7 @@ if [[ $ARGS =~ sway ]] || [[ $ARGS =~ all ]]; then
   if $INSTALL; then
     info "Installing Sway config..."
     $MKDIR_CMD ~/.config
-    hardlink $REPO_DIR/sway ~/.config/sway
+    symlink $REPO_DIR/sway ~/.config/sway
   else
     info "Removing Sway config..."
     remove ~/.config/sway
@@ -88,7 +93,7 @@ if [[ $ARGS =~ udev ]] || [[ $ARGS =~ all ]]; then
     info "Installing udev rules (calls sudo)..."
     cd udev
     for rule in *; do
-      hardlink_sudo $rule /etc/udev/rules.d/$rule
+      symlink_sudo $rule /etc/udev/rules.d/$rule
     done
     cd ..
   else
