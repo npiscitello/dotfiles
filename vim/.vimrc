@@ -5,7 +5,6 @@ call vundle#begin()               " start Vundle
 Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 " Vundle plugins
 Plugin 'Valloric/YouCompleteMe'             " autocompletion and syntax checking
-Plugin 'SirVer/ultisnips'                   " snippet code for YCM
 Plugin 'sjl/gundo.vim'                      " undo tree visualizer
 Plugin 'lervag/vimtex'                      " latex plugin
 Plugin 'altercation/vim-colors-solarized'   " color scheme
@@ -54,6 +53,7 @@ set ignorecase									      " needed to use smartcase
 set smartcase										      " use case-insensitive search unless a capital letter is typed
 set cursorline                        " enable highlighting the current line
 syntax enable				                  " enables syntax highlighting
+set shell=bash\ --login               " spawn the subshell as a login shell
 
 " enable solarized - uncomment next line to use 256 color mode
 " let g:solarized_termcolors=256
