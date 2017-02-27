@@ -14,12 +14,14 @@ warn () { echo -e "\x1B[33m[WRN] " $@ "\x1B[0m"; }
 error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
 
 # various useful commands
-# we use hardlinks b/c they take up less space, are faster, and we don't need symlink benefits
-hardlink () { if [[ -e $2 ]]; then warn $2 "already exists, skipping"; else ln -v $1 $2; fi }
-hardlink_sudo () { if sudo bash -c "[[ -e $2 ]]"; then warn $2 "already exists, skipping"; else sudo ln -v $1 $2; fi }
-remove () { if [[ -e $1 ]]; then rm -r $1; else warn $1 "doesn't exist, skipping"; fi }
-remove_sudo () { if sudo bash -c "[[ -e $1 ]]"; then sudo rm -r $1; else warn $1 "doesn't exist, skipping"; fi }
 MKDIR_CMD="mkdir -vp"
+LN_CMD="ln -v"
+RM_CMD="rm -r"
+# we use hardlinks b/c they take up less space, are faster, and we don't need symlink benefits
+hardlink () { if [[ -e $2 ]]; then warn $2 "already exists, skipping"; else $LN_CMD $1 $2; fi }
+hardlink_sudo () { if sudo bash -c "[[ -e $2 ]]"; then warn $2 "already exists, skipping"; else sudo $LN_CMD $1 $2; fi }
+remove () { if [[ -e $1 ]]; then $RM_CMD $1; else warn $1 "doesn't exist, skipping"; fi }
+remove_sudo () { if sudo bash -c "[[ -e $1 ]]"; then sudo $RM_CMD $1; else warn $1 "doesn't exist, skipping"; fi }
 
 # print help text
 helptext () {
@@ -46,10 +48,10 @@ if [[ $# -lt 2 ]]; then
 fi
 
 # parse out action
-if [[ $1 -eq "install" ]]; then
-  INSTALL=0
-else if [[ $1 -ne "remove" ]]; then
-  INSTALL=1
+if [[ "$1" == "install" ]]; then
+  INSTALL=true
+elif [[ "$1" == "remove" ]]; then
+  INSTALL=false
 else
   helptext 2
 fi
