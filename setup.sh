@@ -15,22 +15,23 @@ error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
 
 # various useful commands
 MKDIR_CMD="mkdir -vp"
-LN_CMD="ln -vs"
+SYMLN_CMD="ln -vs"
+HRDLN_CMD="ln -v"
 RM_CMD="rm -vr"
 
 symlink () { 
   if [[ -e $2 ]]; then
     warn $2 "already exists, skipping"
   else
-    $LN_CMD $1 $2
+    $SYMLN_CMD $1 $2
   fi 
 }
 
-symlink_sudo () {
+hardlink_sudo () {
   if sudo bash -c "[[ -e $2 ]]"; then
     warn $2 "already exists, skipping"
   else
-    sudo $LN_CMD $1 $2
+    sudo $HRDLN_CMD $1 $2
   fi
 }
 
@@ -130,7 +131,7 @@ if [[ $COMPONENTS =~ udev ]] || [[ $COMPONENTS =~ all ]]; then
     info "Installing udev rules (calls sudo)..."
     cd udev
     for rule in *; do
-      symlink_sudo $rule /etc/udev/rules.d/$rule
+      hardlink_sudo $rule /etc/udev/rules.d/$rule
     done
     cd ..
   else
