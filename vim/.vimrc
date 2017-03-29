@@ -16,6 +16,8 @@ call vundle#end()
 " turns on filetype recognition
 filetype plugin indent on
 
+" prevent YCM from loading
+"let g:loaded_youcompleteme = 1
 " YCM - default info for syntax completion
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 " YCM - shorten the time resting before background processes run
@@ -24,6 +26,8 @@ let g:ycm_allow_changing_updatetime = 1
 let g:ycm_confirm_extra_conf = 0
 " YCM - populate location list with errors and warnings
 let g:ycm_always_populate_location_list = 1
+" YCM - python3
+let g:ycm_server_python_interpreter = "python3"
 " don't spin up the 'Scratch' window on an autocompletion
 set completeopt-=preview
 
@@ -164,9 +168,11 @@ nnoremap <leader>sp :sp
 " start a search and replace
 nnoremap <leader>ss :%s/
 " re-compile for YCM errors
-nnoremap <leader>yr :YcmForceCompileAndDiagnostics<CR><ENTER>:echo "Recompiling for YCM - blocks VIM"<CR>
+nnoremap <leader>yr :YcmForceCompileAndDiagnostics<CR>
 " trigger YCM FixIt
 nnoremap <leader>fx :YcmCompleter FixIt<CR>
+" Open YCM diagnostics quickly
+nnoremap <leader>yd :YcmDiags<CR>
 " jump to next/previous location
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprevious<CR>
