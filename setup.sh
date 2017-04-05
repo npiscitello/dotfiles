@@ -3,7 +3,7 @@
 # 2 - the action was passed incorrectly
 
 # get the location of the script from the call
-REPO_DIR=$(dirname $(readlink -f "$0"))
+REPO_DIR=`realpath .`
 for (( i=2; i<=$#; i+=1 )); do
   COMPONENTS="$COMPONENTS ${!i}"
 done
@@ -12,6 +12,8 @@ done
 info () { echo -e "\x1B[32m[INF] " $@ "\x1B[0m"; }
 warn () { echo -e "\x1B[33m[WRN] " $@ "\x1B[0m"; }
 error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
+
+info "enclosing directory: " $REPO_DIR
 
 # various useful commands
 MKDIR_CMD="mkdir -vp"
