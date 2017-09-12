@@ -130,7 +130,7 @@ if [[ $COMPONENTS =~ $VIM ]] || [[ $COMPONENTS =~ $ALL ]]; then
       remove ~/.vimrc
       ;;
 
-    $UDPATE)
+    $UPDATE)
       info "Updating Vim plugins via Vundle..."
       vim +PluginUpdate
       ;;
@@ -214,6 +214,7 @@ if [[ $COMPONENTS =~ $REPO ]] || [[ $COMPONENTS =~ $ALL ]]; then
       info "Updating the dotfiles repo..."
       git fetch
       git merge
+      git submodule update --remote
       ;;
 
     $HELP)
