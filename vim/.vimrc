@@ -2,7 +2,9 @@
 filetype off                      " required to start Vundle
 set rtp+=~/.vim/bundle/Vundle.vim " tell Vim to use Vundle
 call vundle#begin()               " start Vundle
-Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
+" We do not want Vundle to manage itself b/c it's a submodule in the dotfiles repo
+" Therefore, an attempt to update will always fail b/c it's pointing at a commit, not a branch
+"Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 " Vundle plugins
 Plugin 'Valloric/YouCompleteMe'             " autocompletion and syntax checking
 Plugin 'sjl/gundo.vim'                      " undo tree visualizer
