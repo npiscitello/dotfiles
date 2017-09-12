@@ -1,6 +1,7 @@
+# todo: if component is bad and action is not 'help', no output
+
 # return values:
 # 1 - not enough arguments
-# 2 - the action was passed incorrectly
 
 # get the location of the script from the call
 REPO_DIR=`realpath .`
@@ -13,7 +14,8 @@ info () { echo -e "\x1B[32m[INF] " $@ "\x1B[0m"; }
 warn () { echo -e "\x1B[33m[WRN] " $@ "\x1B[0m"; }
 error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
 
-info "enclosing directory: " $REPO_DIR
+# for debugging
+#info "enclosing directory: " $REPO_DIR
 
 # various useful commands
 MKDIR_CMD="mkdir -vp"
@@ -53,95 +55,178 @@ remove_sudo () {
   fi 
 }
 
+# common actions
+INSTALL=install
+REMOVE=remove
+UPDATE=update
+HELP=help
+
+# common components
+ALL=all
+VIM=vim
+SWAY=sway
+UDEV=udev
+REPO=repo
+
 # print help text
+# args: helptext
 helptext () {
   info "npiscitello's configuration installer"
   info "usage: ./setup.sh [ action ] [ component ] [ component ] ..."
   info ""
   info "actions (exactly one must be present):"
-  info "\thelp    - show this helptext and exit without doing anything"
-  info "\tinstall - symlink relevant files to the filesystem"
-  info "\tremove  - delete configs of the specified components"
+  info "\t$HELP    - show this helptext and exit without doing anything"
+  info "\t$INSTALL - symlink relevant files to the filesystem"
+  info "\t$REMOVE  - delete configs of the specified components"
+  info "\t$UPDATE  - run any applicable updates on the specified components"
   info "\t\tWARNING: this tool will not differentiate between its"
   info "\t\town configs and custom user configs. Use with caution!"
   info ""
   info "components (at least one must be present):"
-  info "\tall  - all configs (as if you passed every argument below)"
-  info "\tvim  - the ~/.vim directory and the ~/.vimrc file"
-  info "\tsway - the Sway setup in the ~/.config directory"
-  info "\tudev - udev rules in /etc/udev/rules.d (calls sudo)"
+  info "\t$ALL  - all configs (as if you passed every argument below)"
+  info "\t$VIM  - the ~/.vim directory and the ~/.vimrc file"
+  info "\t$SWAY - the Sway setup in the ~/.config directory"
+  info "\t$UDEV - udev rules in /etc/udev/rules.d (calls sudo)"
+  info "\t$REPO - the 'dotfiles' repo itself"
+  info ""
+  info "Remember, not all actions are applicable to all components!"
   info ""
   info "Since everything is symlinked back to this folder, changing any config"
   info "file should be mirrored in this folder. Commit to save those changes."
   info "If this folder is moved or deleted, all of your configs will break!"
-  exit $1
 }
 
-# parse out action (do this first to catch a 'help')
-if [[ "$1" == "install" ]]; then
-  INSTALL=true
-elif [[ "$1" == "remove" ]]; then
-  INSTALL=false
-elif [[ "$1" =~ "help" ]] || [[ "$1" =~ "-h" ]]; then
-  # catch most unix-y help flags (help, --help, -h, etc.)
-  helptext 0
-else
-  error ""
-  error "Invalid action!"
-  error ""
-  helptext 2
-fi
+# print an action error
+# args: bad_action action component
+bad_action () {
+  error "The '$1' action is not applicable to $2!"
+  helptext
+}
 
 # check that enough arguments were passed
 if [[ $# -lt 2 ]]; then
-  error ""
   error "Not enough arguments!"
-  error ""
-  helptext 1
+  helptext
+  exit 1
 fi
 
+# collect the action from the command line
+ACTION=$1
+
 # Vim
-if [[ $COMPONENTS =~ vim ]] || [[ $COMPONENTS =~ all ]]; then
-  if $INSTALL; then
-    info "Installing Vim config..."
-    symlink $REPO_DIR/vim ~/.vim
-    symlink $REPO_DIR/vim/.vimrc ~/.vimrc
-    info "Don't forget to compile YCM!"
-    info "On Arch, that involves a standalone clang install"
-  else
-    info "Removing Vim config..."
-    remove ~/.vim
-    remove ~/.vimrc
-  fi
+if [[ $COMPONENTS =~ $VIM ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing Vim config..."
+      symlink $REPO_DIR/vim ~/.vim
+      symlink $REPO_DIR/vim/.vimrc ~/.vimrc
+      info "Don't forget to compile YCM!"
+      info "On Arch, that involves a standalone clang install"
+      ;;
+
+    $REMOVE)
+      info "Removing Vim config..."
+      remove ~/.vim
+      remove ~/.vimrc
+      ;;
+
+    $UDPATE)
+      info "Updating Vim plugins via Vundle..."
+      vim +PluginUpdate
+      ;;
+
+    $HELP)
+      info "Valid actions on the $VIM component: $INSTALL $REMOVE $UPDATE $HELP"
+      info "Coming soon: a description of what the Vim config contains"
+      info ""
+      ;;
+      
+    *)
+      bad_action $ACTION $VIM
+  esac
 fi
 
 # Sway
-if [[ $COMPONENTS =~ sway ]] || [[ $COMPONENTS =~ all ]]; then
-  if $INSTALL; then
-    info "Installing Sway config..."
-    $MKDIR_CMD ~/.config
-    symlink $REPO_DIR/sway ~/.config/sway
-  else
-    info "Removing Sway config..."
-    remove ~/.config/sway
-  fi
+if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing Sway config..."
+      $MKDIR_CMD ~/.config
+      symlink $REPO_DIR/sway ~/.config/sway
+      ;;
+
+    $REMOVE)
+      info "Removing Sway config..."
+      remove ~/.config/sway
+      ;;
+
+    $HELP)
+      info "Valid actions on the $SWAY component: $INSTALL $REMOVE $HELP"
+      info "Coming soon: a description of what the Sway config contains"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $SWAY
+  esac
 fi
 
 # udev
-if [[ $COMPONENTS =~ udev ]] || [[ $COMPONENTS =~ all ]]; then
-  if $INSTALL; then
-    info "Installing udev rules (calls sudo)..."
-    cd udev
-    for rule in *; do
-      hardlink_sudo $rule /etc/udev/rules.d/$rule
-    done
-    cd ..
-  else
-    info "Removing udev rules (calls sudo)..."
-    cd udev
-    for rule in *; do
-      remove_sudo /etc/udev/rules.d/$rule
-    done
-    cd ..
-  fi
+if [[ $COMPONENTS =~ $UDEV ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing udev rules (calls sudo)..."
+      cd udev
+      for rule in *; do
+        hardlink_sudo $rule /etc/udev/rules.d/$rule
+      done
+      cd ..
+      ;;
+
+    $REMOVE)
+      info "Removing udev rules (calls sudo)..."
+      cd udev
+      for rule in *; do
+        remove_sudo /etc/udev/rules.d/$rule
+      done
+      cd ..
+      ;;
+
+    $HELP)
+      info "Valid actions on the $UDEV component: $INSTALL $REMOVE $HELP"
+      info "Coming soon: a description of what the udev config contains"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $SWAY
+  esac
+fi
+
+# repo
+if [[ $COMPONENTS =~ $REPO ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $REMOVE)
+      info "coming soon - an autoremove feature to erase all traces of this repo from your system!"
+      ;;
+
+    $UPDATE)
+      info "Updating the dotfiles repo..."
+      git fetch
+      git merge
+      ;;
+
+    $HELP)
+      info "Valid actions on the $REPO component: $REMOVE $UPDATE $HELP"
+      info "Coming soon: a description of what the actions do on the repo"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $REPO
+  esac
+fi
+
+if [[ "$ACTION" = "$HELP" ]]; then
+  helptext
 fi
