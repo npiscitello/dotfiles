@@ -120,7 +120,7 @@ if [[ $COMPONENTS =~ $VIM ]] || [[ $COMPONENTS =~ $ALL ]]; then
       info "Installing Vim config..."
       symlink $REPO_DIR/vim ~/.vim
       symlink $REPO_DIR/vim/.vimrc ~/.vimrc
-      info "Don't forget to compile YCM!"
+      info "Don't forget to run \`vim +PluginInstall\` and to compile YCM!"
       info "On Arch, that involves a standalone clang install"
       ;;
 
