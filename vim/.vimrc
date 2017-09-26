@@ -38,6 +38,9 @@ let g:vimtex_echo_ignore_wait = 1
 " vimtex - make sure to recognize '.tex' as latex
 let g:tex_flavor = 'latex'
 
+" gundo - use python3
+let g:gundo_prefer_python3 = 1
+
 " misc. settings
 set nocompatible                      " be iMproved
 set number					                  " turn on line numbers
