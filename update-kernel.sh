@@ -1,7 +1,7 @@
 echo "This utility will rebuild the kernel sources at '/usr/src/linux' and install them. It will then move"
 echo "the generated kernel from '/boot/vmlinuz-*' to '/boot/EFI/BOOT/BOOTX64.EFI' to make it bootable as an"
 echo "EFI stub (this is a workaround for the VirtualBox EFI implementation but should also work on hardware)"
-echo "Type 'update' to continue, or press Ctl-C to exit without making any changes."
+echo "Type 'update' to continue, or press Ctl-C to exit without making any changes." 
 
 if [ $EUID -ne 0 ]; then
   echo -e "\x1B[31mmust be run as root; aborting...\x1B[0m"
