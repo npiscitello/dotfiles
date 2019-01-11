@@ -66,6 +66,7 @@ ALL=all
 VIM=vim
 SWAY=sway
 UDEV=udev
+BASH=bash
 REPO=repo
 
 # print help text
@@ -87,6 +88,7 @@ helptext () {
   info "\t$VIM  - the ~/.vim directory and the ~/.vimrc file"
   info "\t$SWAY - the Sway setup in the ~/.config directory"
   info "\t$UDEV - udev rules in /etc/udev/rules.d (calls sudo)"
+  info "\t$BASH - the ~/.bash_profile file"
   info "\t$REPO - the 'dotfiles' repo itself"
   info ""
   info "Remember, not all actions are applicable to all components!"
@@ -137,7 +139,6 @@ if [[ $COMPONENTS =~ $VIM ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     $HELP)
       info "Valid actions on the $VIM component: $INSTALL $REMOVE $UPDATE $HELP"
-      info "Coming soon: a description of what the Vim config contains"
       info ""
       ;;
       
@@ -162,7 +163,6 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     $HELP)
       info "Valid actions on the $SWAY component: $INSTALL $REMOVE $HELP"
-      info "Coming soon: a description of what the Sway config contains"
       info ""
       ;;
 
@@ -194,12 +194,37 @@ if [[ $COMPONENTS =~ $UDEV ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     $HELP)
       info "Valid actions on the $UDEV component: $INSTALL $REMOVE $HELP"
-      info "Coming soon: a description of what the udev config contains"
       info ""
       ;;
 
     *)
       bad_action $ACTION $SWAY
+  esac
+fi
+
+# bash
+if [[ $COMPONENTS =~ $BASH ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing bash config..."
+      symlink $REPO_DIR/bash/.bash_profile ~/.bash_profile
+      info "Don't forget to 'source .bash_profile' to see any changes!"
+      ;;
+
+    $REMOVE)
+      info "Removing bash config - this will leave you without a .bash_profile!"
+      remove ~/.bash_profile
+      ;;
+
+    $HELP)
+      info "Valid actions on the $BASH component: $INSTALL $REMOVE $HELP"
+      info "If you run $INSTALL but nothing happens, check if .bash_profile"
+      info "already exists. If it does, delete or rename it."
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $BASH
   esac
 fi
 
@@ -219,7 +244,6 @@ if [[ $COMPONENTS =~ $REPO ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     $HELP)
       info "Valid actions on the $REPO component: $REMOVE $UPDATE $HELP"
-      info "Coming soon: a description of what the actions do on the repo"
       info ""
       ;;
 
