@@ -21,7 +21,7 @@ call vundle#end()
 filetype plugin indent on
 
 " prevent YCM from loading
-"let g:loaded_youcompleteme = 1
+let g:loaded_youcompleteme = 1
 " disable error highlighting
 "let g:ycm_show_diagnostics_ui = 0
 " YCM - default info for syntax completion
@@ -36,6 +36,8 @@ let g:ycm_always_populate_location_list = 1
 let g:ycm_server_python_interpreter = "python3"
 " don't spin up the 'Scratch' window on an autocompletion
 set completeopt-=preview
+" force UTF-8
+set encoding=utf-8
 
 " vimtex - ignore launch errors
 let g:vimtex_echo_ignore_wait = 1

@@ -68,6 +68,7 @@ SWAY=sway
 UDEV=udev
 BASH=bash
 REPO=repo
+ALACRITTY=alacritty
 
 # print help text
 # args: helptext
@@ -168,6 +169,30 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     *)
       bad_action $ACTION $SWAY
+  esac
+fi
+
+# Alacritty
+if [[ $COMPONENTS =~ $ALACRITTY ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing Alacritty config..."
+      $MKDIR_CMD ~/.config
+      symlink $REPO_DIR/alacritty ~/.config/alacritty
+      ;;
+
+    $REMOVE)
+      info "Removing Alacritty config..."
+      remove ~/.config/alacritty
+      ;;
+
+    $HELP)
+      info "Valid actions on the $ALACRITTY component: $INSTALL $REMOVE $HELP"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $ALACRITTY
   esac
 fi
 
