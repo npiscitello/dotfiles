@@ -20,3 +20,8 @@ export EDITOR=vim
 
 # easy sudo editing
 alias svim="sudoedit"
+
+# start Sway if the config file is present
+if [ "$(tty)" = "/dev/tty1" -a -f ".config/sway/config" ]; then
+  exec sway
+fi
