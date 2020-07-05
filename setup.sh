@@ -69,8 +69,6 @@ SWAY=sway
 UDEV=udev
 BASH=bash
 REPO=repo
-ALACRITTY=alacritty
-SWAYLOCK=lock
 
 # print help text
 # args: helptext
@@ -89,12 +87,10 @@ helptext () {
   info "components (at least one must be present):"
   info "\t$ALL  - all configs (as if you passed every argument below)"
   info "\t$VIM  - the ~/.vim directory and the ~/.vimrc file"
-  info "\t$SWAY - the Sway setup in the ~/.config directory"
+  info "\t$SWAY - the Sway setup in the ~/.config directory and other graphical things"
   info "\t$UDEV - udev rules in /etc/udev/rules.d (calls sudo)"
   info "\t$BASH - the ~/.bash_profile file"
   info "\t$REPO - the 'dotfiles' repo itself"
-  info "\t$ALACRITTY - the terminal emulator I use with Sway"
-  info "\t$SWAYLOCK - the lock screen I use with Sway"
   info ""
   info "Remember, not all actions are applicable to all components!"
   info ""
@@ -156,15 +152,23 @@ fi
 if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
   case $ACTION in
     $INSTALL)
-      info "Installing Sway config..."
+      info "Installing Sway (and related applications) config..."
       $MKDIR_CMD ~/.config
       symlink $REPO_DIR/sway ~/.config/sway
       $EXEC_CMD $REPO_DIR/sway/start-sway.sh
+      symlink $REPO_DIR/swaylock ~/.config/swaylock
+      symlink $REPO_DIR/alacritty ~/.config/alacritty
+      symlink $REPO_DIR/waybar ~/.config/waybar
+      symlink $REPO_DIR/wofi ~/.config/wofi
       ;;
 
     $REMOVE)
-      info "Removing Sway config..."
+      info "Removing Sway (and related applications) config..."
       remove ~/.config/sway
+      remove ~/.config/swaylock
+      remove ~/.config/alacritty
+      remove ~/.config/waybar
+      remove ~/.config/wofi
       ;;
 
     $HELP)
@@ -174,54 +178,6 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     *)
       bad_action $ACTION $SWAY
-  esac
-fi
-
-# Swaylock
-if [[ $COMPONENTS =~ $SWAYLOCK ]] || [[ $COMPONENTS =~ $ALL ]]; then
-  case $ACTION in
-    $INSTALL)
-      info "Installing Swaylock config..."
-      $MKDIR_CMD ~/.config
-      symlink $REPO_DIR/swaylock ~/.config/swaylock
-      ;;
-
-    $REMOVE)
-      info "Removing Sway config..."
-      remove ~/.config/swaylock
-      ;;
-
-    $HELP)
-      info "Valid actions on the $SWAYLOCK component: $INSTALL $REMOVE $HELP"
-      info ""
-      ;;
-
-    *)
-      bad_action $ACTION $SWAYLOCK
-  esac
-fi
-
-# Alacritty
-if [[ $COMPONENTS =~ $ALACRITTY ]] || [[ $COMPONENTS =~ $ALL ]]; then
-  case $ACTION in
-    $INSTALL)
-      info "Installing Alacritty config..."
-      $MKDIR_CMD ~/.config
-      symlink $REPO_DIR/alacritty ~/.config/alacritty
-      ;;
-
-    $REMOVE)
-      info "Removing Alacritty config..."
-      remove ~/.config/alacritty
-      ;;
-
-    $HELP)
-      info "Valid actions on the $ALACRITTY component: $INSTALL $REMOVE $HELP"
-      info ""
-      ;;
-
-    *)
-      bad_action $ACTION $ALACRITTY
   esac
 fi
 

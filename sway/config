@@ -4,7 +4,7 @@
 # font for titlebars and other system stuff
 font Ubuntu 14
 # disable titlebars
-default_border pixel
+default_border pixel 5
 
 ### Variables
 # Logo key. Use Mod1 for Alt.
@@ -17,13 +17,13 @@ set $right l
 # terminal emulator
 set $term alacritty
 # application launcher
-set $menu bemenu-run
+set $menu wofi
 # screen locker
 set $locker swaylock
 
 ### Output configuration
 # wallpaper
-#output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ../../wallpaper.jpg fill
 # display
 output HDMI-A-1 resolution 1920x1080 position 0,0 subpixel rgb
 
@@ -42,7 +42,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+d exec $menu --show run
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -157,10 +157,8 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    swaybar_command waybar
 }
+
+# auto-lock on start
+exec $locker
