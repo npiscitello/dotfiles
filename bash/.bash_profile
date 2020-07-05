@@ -23,5 +23,5 @@ alias svim="sudoedit"
 
 # start Sway if the config file is present
 if [ "$(tty)" = "/dev/tty1" -a -f ".config/sway/config" ]; then
-  exec sway
+  exec ~/.config/sway/start-sway.sh
 fi

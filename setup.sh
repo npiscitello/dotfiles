@@ -22,6 +22,7 @@ MKDIR_CMD="mkdir -vp"
 SYMLN_CMD="ln -vs"
 HRDLN_CMD="ln -v"
 RM_CMD="rm -vr"
+EXEC_CMD="chmod +x"
 
 symlink () { 
   if [[ -e $2 ]]; then
@@ -69,6 +70,7 @@ UDEV=udev
 BASH=bash
 REPO=repo
 ALACRITTY=alacritty
+SWAYLOCK=lock
 
 # print help text
 # args: helptext
@@ -91,6 +93,8 @@ helptext () {
   info "\t$UDEV - udev rules in /etc/udev/rules.d (calls sudo)"
   info "\t$BASH - the ~/.bash_profile file"
   info "\t$REPO - the 'dotfiles' repo itself"
+  info "\t$ALACRITTY - the terminal emulator I use with Sway"
+  info "\t$SWAYLOCK - the lock screen I use with Sway"
   info ""
   info "Remember, not all actions are applicable to all components!"
   info ""
@@ -155,6 +159,7 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
       info "Installing Sway config..."
       $MKDIR_CMD ~/.config
       symlink $REPO_DIR/sway ~/.config/sway
+      $EXEC_CMD $REPO_DIR/sway/start-sway.sh
       ;;
 
     $REMOVE)
@@ -169,6 +174,30 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     *)
       bad_action $ACTION $SWAY
+  esac
+fi
+
+# Swaylock
+if [[ $COMPONENTS =~ $SWAYLOCK ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing Swaylock config..."
+      $MKDIR_CMD ~/.config
+      symlink $REPO_DIR/swaylock ~/.config/swaylock
+      ;;
+
+    $REMOVE)
+      info "Removing Sway config..."
+      remove ~/.config/swaylock
+      ;;
+
+    $HELP)
+      info "Valid actions on the $SWAYLOCK component: $INSTALL $REMOVE $HELP"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $SWAYLOCK
   esac
 fi
 
