@@ -60,6 +60,12 @@ bindsym $mod+Shift+e exit
 # lock the screen
 bindsym $mod+Escape exec $locker
 
+# suspend the computer to RAM - doesn't work yet!
+#bindsym $mod+Shift+Escape exec systemctl suspend
+
+# turn off the computer
+bindsym $mod+Control+Shift+Escape exec systemctl poweroff
+
 #
 # Moving around:
 #
