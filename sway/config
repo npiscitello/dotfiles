@@ -29,6 +29,7 @@ output HDMI-A-1 resolution 1920x1080 position 0,0 subpixel rgb
 
 ### Input configuration
 # options for all keyboards
+#input 1:1:AT_Translated_Set_2_keyboard {
 input type:keyboard {
   xkb_numlock enabled
 }
