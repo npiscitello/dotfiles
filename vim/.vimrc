@@ -1,5 +1,4 @@
-" Vundle stuff
-filetype off                                " required to start Vundle
+" Vundle stufffiletype off                                " required to start Vundle
 set rtp+=~/.vim/bundle/Vundle.vim           " tell Vim to use Vundle
 call vundle#begin()                         " start Vundle
 
@@ -21,7 +20,7 @@ call vundle#end()
 filetype plugin indent on
 
 " prevent YCM from loading
-let g:loaded_youcompleteme = 1
+"let g:loaded_youcompleteme = 1
 " disable error highlighting
 "let g:ycm_show_diagnostics_ui = 0
 " YCM - default info for syntax completion
@@ -75,6 +74,9 @@ set shell=bash\ --login       " spawn the subshell as a login shell
 set background=dark
 colorscheme solarized
 
+" disable background color erase to make the whole screen the right background color
+set t_ut=
+
 " highlighting settings
 hi Search cterm=none ctermbg=226 ctermfg=16       " highlight search matches in yellow
 hi Pmenu cterm=none ctermfg=7 ctermbg=16          " highlight YCM completion window subshell
@@ -86,6 +88,9 @@ hi! link YcmErrorSection YcmErrorSign             " highlight YCM syntax errors
 hi VertSplit cterm=bold ctermbg=0 ctermfg=7       " make the vertical separator less intrusive
 hi StatusLine cterm=bold ctermbg=0 ctermfg=7      " make the status line less intrusive
 hi StatusLineNC cterm=none ctermbg=0 ctermfg=10   " make the inactive status lines less intrusive
+
+" play nice with mice
+set mouse=a
 
 " setup statusline:
 "   %-f: left justified relative file path

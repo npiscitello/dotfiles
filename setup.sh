@@ -157,18 +157,18 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
       symlink $REPO_DIR/sway ~/.config/sway
       $EXEC_CMD $REPO_DIR/sway/start-sway.sh
       symlink $REPO_DIR/swaylock ~/.config/swaylock
-      symlink $REPO_DIR/alacritty ~/.config/alacritty
       symlink $REPO_DIR/waybar ~/.config/waybar
       symlink $REPO_DIR/wofi ~/.config/wofi
+      symlink $REPO_DIR/kitty ~/.config/kitty
       ;;
 
     $REMOVE)
       info "Removing Sway (and related applications) config..."
       remove ~/.config/sway
       remove ~/.config/swaylock
-      remove ~/.config/alacritty
       remove ~/.config/waybar
       remove ~/.config/wofi
+      remove ~/.config/kitty
       ;;
 
     $HELP)
@@ -218,12 +218,14 @@ if [[ $COMPONENTS =~ $BASH ]] || [[ $COMPONENTS =~ $ALL ]]; then
     $INSTALL)
       info "Installing bash config..."
       symlink $REPO_DIR/bash/.bash_profile ~/.bash_profile
-      info "Don't forget to 'source .bash_profile' to see any changes!"
+      symlink $REPO_DIR/bash/.bashrc ~/.bashrc
+      info "Don't forget to source .bash_profile and .bashrc to see any changes!"
       ;;
 
     $REMOVE)
-      info "Removing bash config - this will leave you without a .bash_profile!"
+      info "Removing bash config - this will leave you without a .bash_profile and .bashrc!"
       remove ~/.bash_profile
+      remove ~/.bashrc
       ;;
 
     $HELP)
