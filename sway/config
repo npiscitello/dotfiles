@@ -17,9 +17,11 @@ set $right l
 # terminal emulator
 set $term kitty
 # application launcher
-set $menu wofi
+set $menu bemenu-run
 # screen locker
 set $locker swaylock
+# browser
+set $browser qutebrowser
 
 ### Output configuration
 # wallpaper
@@ -43,7 +45,10 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # start your launcher
-bindsym $mod+d exec $menu --show run
+bindsym $mod+d exec $menu -n --fn Ubuntu 14
+
+# start the browser
+bindsym $mod+Shift+Return exec $browser
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.

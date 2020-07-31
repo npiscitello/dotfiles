@@ -12,7 +12,7 @@
   },
 
   "cpu": {
-    "interval": 10,
+    "interval": 5,
     "format": "{usage}% ({load})",
     "states": {
       "warning": 70,
@@ -21,7 +21,7 @@
   },
 
   "memory": {
-    "interval": 10,
+    "interval": 5,
     "format": "{percentage}% ({used:0.2f})"
   },
 
