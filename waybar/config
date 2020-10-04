@@ -17,7 +17,10 @@
     "pulseaudio",
     "cpu",
     "memory",
-    "clock"
+    "clock",
+    "custom/sep",
+    "custom/poweroff",
+    "custom/lock"
   ],
 
   "sway/window": {
@@ -72,6 +75,15 @@
   "custom/l_browser": {
     "format": "    ",
     "on-click": "chromium"
+  },
 
+  "custom/lock": {
+    "format": "    ",
+    "on-click": "swaylock"
+  },
+
+  "custom/poweroff": {
+    "format": "    ",
+    "on-click": "poweroff"
   }
 }
