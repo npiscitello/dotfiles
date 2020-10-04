@@ -2,18 +2,21 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Ubuntu, Helvetica, Arial, sans-serif;
+    font-family: Ubuntu, Helvetica, Arial, sans-serif, FontAwesome;
     font-size: 13px;
     min-height: 0;
 }
 
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
 }
+/*
+   makes the stripe along the bottom of the bar
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+*/
 
 window#waybar.hidden {
     opacity: 0.2;
@@ -27,10 +30,6 @@ window#waybar.solo {
     background-color: #FFFFFF;
 }
 */
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
 
 window#waybar.chromium {
     background-color: #000000;
@@ -54,7 +53,7 @@ window#waybar.chromium {
 */
 
 #workspaces button.focused {
-    background-color: #64727D;
+    background-color: #282e33;
     border-bottom: 3px solid #ffffff;
 }
 
@@ -63,7 +62,7 @@ window#waybar.chromium {
 }
 
 #mode {
-    background-color: #64727D;
+    background-color: #282e33;
     border-bottom: 3px solid #ffffff;
 }
 
@@ -86,7 +85,7 @@ window#waybar.chromium {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #282e33;
 }
 
 #battery {
@@ -121,12 +120,11 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: #282e33;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: #282e33;
 }
 
 #backlight {
@@ -142,13 +140,11 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: #282e33;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: #282e33;
 }
 
 #custom-media {

@@ -1,5 +1,6 @@
+/* icons require fontawesome */
 {
-  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-left": ["custom/l_term","custom/sep","sway/workspaces","sway/mode"],
   "modules-center": ["sway/window"],
   "modules-right": ["pulseaudio","cpu","memory","clock"],
 
@@ -13,7 +14,7 @@
 
   "cpu": {
     "interval": 5,
-    "format": "{usage}% ({load})",
+    "format": "{usage}% ({load})  ",
     "states": {
       "warning": 70,
       "critical": 90
@@ -22,12 +23,26 @@
 
   "memory": {
     "interval": 5,
-    "format": "{percentage}% ({used:0.2f})"
+    "format": "{percentage}% ({used:0.2f})  "
   },
 
   "pulseaudio": {
-    "format": "{volume}%",
-    "format-muted": "-M-",
-    "scroll-step": 5
+    "format": "{volume}%  {icon}",
+    "format-muted": "-M-  ",
+    "scroll-step": 5,
+    "format-icons": {
+      "default": ""
+    },
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol"
+  },
+
+  "custom/sep": {
+    "format": "  |  "
+  },
+
+  "custom/l_term": {
+    "format": "    ",
+    "on-click": "kitty"
   }
 }
