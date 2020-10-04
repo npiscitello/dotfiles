@@ -23,4 +23,4 @@ export QT_QPA_PLATFORM=wayland
 
 # for esp8266 development
 export IDF_PATH=~/sdk/ESP8266_RTOS_SDK
-alias get_idf="source $IDF_PATH/export.sh"
+alias idf_init="source $IDF_PATH/export.sh"

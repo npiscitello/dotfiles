@@ -1,8 +1,24 @@
 /* icons require fontawesome */
 {
-  "modules-left": ["custom/l_term","custom/sep","sway/workspaces","sway/mode"],
-  "modules-center": ["sway/window"],
-  "modules-right": ["pulseaudio","cpu","memory","clock"],
+  "modules-left": [
+    "custom/l_files",
+    "custom/l_term",
+    "custom/l_browser",
+    "custom/sep",
+    "sway/workspaces",
+    "sway/mode"
+  ],
+
+  "modules-center": [
+    "sway/window"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "clock"
+  ],
 
   "sway/window": {
     "max-length": 80
@@ -18,12 +34,14 @@
     "states": {
       "warning": 70,
       "critical": 90
-    }
+    },
+    "on-click": "kitty htop -d 7"
   },
 
   "memory": {
     "interval": 5,
-    "format": "{percentage}% ({used:0.2f})  "
+    "format": "{percentage}% ({used:0.2f})  ",
+    "on-click": "kitty htop -d 7"
   },
 
   "pulseaudio": {
@@ -44,5 +62,16 @@
   "custom/l_term": {
     "format": "    ",
     "on-click": "kitty"
+  },
+
+  "custom/l_files": {
+    "format": "    ",
+    "on-click": "thunar"
+  },
+
+  "custom/l_browser": {
+    "format": "    ",
+    "on-click": "chromium"
+
   }
 }
