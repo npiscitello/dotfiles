@@ -2,6 +2,7 @@
 {
   "modules-left": [
     "custom/l_files",
+    "custom/l_keepass",
     "custom/l_term",
     "custom/l_browser",
     "custom/sep",
@@ -28,7 +29,8 @@
   },
   
   "clock": {
-    "format": "{:%A, %d %B | %H:%M}"
+    "interval": 1,
+    "format": "{:%A, %d %B | %H:%M:%S}"
   },
 
   "cpu": {
@@ -70,6 +72,11 @@
   "custom/l_files": {
     "format": "    ",
     "on-click": "thunar"
+  },
+
+  "custom/l_keepass": {
+    "format": "    ",
+    "on-click": "keepassxc"
   },
 
   "custom/l_browser": {
