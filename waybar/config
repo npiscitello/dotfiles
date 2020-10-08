@@ -17,6 +17,7 @@
   "modules-right": [
     "pulseaudio",
     "cpu",
+    "temperature",
     "memory",
     "clock",
     "custom/sep",
@@ -41,6 +42,15 @@
       "critical": 90
     },
     "on-click": "kitty htop -d 7"
+  },
+
+  "temperature": {
+    "interval": 5,
+    "thermal-zone": 2,
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C ",
+    "on-click": "psensor"
   },
 
   "memory": {
