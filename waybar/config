@@ -19,7 +19,8 @@
     "cpu",
     "temperature",
     "memory",
-    "clock",
+    "clock#date",
+    "clock#time",
     "custom/sep",
     "custom/poweroff",
     "custom/lock"
@@ -29,9 +30,14 @@
     "max-length": 80
   },
   
-  "clock": {
+  "clock#date": {
     "interval": 1,
-    "format": "{:%A, %d %B | %H:%M:%S}"
+    "format": "{:%a %b %d}"
+  },
+
+  "clock#time": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}"
   },
 
   "cpu": {
@@ -49,7 +55,7 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
     "critical-threshold": 80,
-    "format": "{temperatureC}°C ",
+    "format": "{temperatureC}°C  ",
     "on-click": "psensor"
   },
 
