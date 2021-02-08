@@ -5,7 +5,7 @@ indicator-idle-visible
 indicator-caps-lock
 ignore-empty-password
 show-failed-attempts
-image=/home/npiscitello/wallpaper.jpg
+image=/home/npiscitello/wallpaper.png
 
 inside-color=#00000000
 inside-clear-color=#00000000

@@ -7,25 +7,27 @@ font Ubuntu 14
 default_border pixel 2
 
 ### Variables
-# Logo key. Use Mod1 for Alt.
+# Logo key (Mod4). Use Mod1 for Alt.
 set $mod Mod1
+#set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # terminal emulator
 set $term kitty
 # application launcher
-set $menu bemenu-run
+set $menu wofi
 # screen locker
 set $locker swaylock
 # browser
-set $browser chromium
+set $browser qutebrowser
 
 ### Output configuration
 # wallpaper
-output * bg ../../wallpaper.jpg fill
+output * bg ../../wallpaper.png fill
 # display
 output HDMI-A-1 resolution 1920x1080 position 0,0 subpixel rgb
 
@@ -47,7 +49,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # start your launcher
-bindsym $mod+d exec $menu -n --fn Ubuntu 14
+bindsym $mod+d exec $menu
 
 # start the browser
 bindsym $mod+Shift+Return exec $browser
@@ -72,7 +74,7 @@ bindsym $mod+Escape exec $locker
 #bindsym $mod+Shift+Escape exec systemctl suspend
 
 # turn off the computer
-bindsym $mod+Control+Shift+Escape exec systemctl poweroff
+bindsym $mod+Control+Shift+Escape exec sudo poweroff
 
 #
 # Moving around:
@@ -174,5 +176,5 @@ bar {
     swaybar_command waybar
 }
 
-# auto-lock on start
-exec $locker
+# auto-lock on start (no autologin, so we don't need this anymore)
+#exec $locker

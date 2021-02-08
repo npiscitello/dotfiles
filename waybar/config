@@ -17,7 +17,6 @@
   "modules-right": [
     "pulseaudio",
     "cpu",
-    "temperature",
     "memory",
     "clock#date",
     "clock#time",
@@ -32,12 +31,14 @@
   
   "clock#date": {
     "interval": 1,
-    "format": "{:%a %b %d}"
+    "format": "{:%a %b %d}",
+    "tooltip": false
   },
 
   "clock#time": {
     "interval": 1,
-    "format": "{:%H:%M:%S}"
+    "format": "{:%H:%M:%S}",
+    "tooltip": false
   },
 
   "cpu": {
@@ -47,22 +48,15 @@
       "warning": 70,
       "critical": 90
     },
-    "on-click": "kitty htop -d 7"
-  },
-
-  "temperature": {
-    "interval": 5,
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp2_input",
-    "critical-threshold": 80,
-    "format": "{temperatureC}°C  ",
-    "on-click": "psensor"
+    "on-click": "kitty htop -d 7",
+    "tooltip": false
   },
 
   "memory": {
     "interval": 5,
     "format": "{percentage}% ({used:0.2f})  ",
-    "on-click": "kitty htop -d 7"
+    "on-click": "kitty htop -d 7",
+    "tooltip": false
   },
 
   "pulseaudio": {
@@ -72,41 +66,49 @@
     "format-icons": {
       "default": ""
     },
-    "on-click": "pamixer -t",
-    "on-click-right": "pavucontrol"
+    "on-click": "pulsemixer --toggle-mute",
+    "on-click-right": "kitty pulsemixer",
+    "tooltip": false
   },
 
   "custom/sep": {
-    "format": "  |  "
+    "format": "  |  ",
+    "tooltip": false
   },
 
   "custom/l_term": {
     "format": "    ",
-    "on-click": "kitty"
+    "on-click": "kitty",
+    "tooltip": false
   },
 
   "custom/l_files": {
     "format": "    ",
-    "on-click": "thunar"
+    "on-click": "thunar",
+    "tooltip": false
   },
 
   "custom/l_keepass": {
     "format": "    ",
-    "on-click": "keepassxc"
+    "on-click": "keepassxc",
+    "tooltip": false
   },
 
   "custom/l_browser": {
     "format": "    ",
-    "on-click": "chromium"
+    "on-click": "qutebrowser",
+    "tooltip": false
   },
 
   "custom/lock": {
     "format": "    ",
-    "on-click": "swaylock"
+    "on-click": "swaylock",
+    "tooltip": false
   },
 
   "custom/poweroff": {
     "format": "    ",
-    "on-click": "poweroff"
+    "on-click": "sudo poweroff",
+    "tooltip": false
   }
 }

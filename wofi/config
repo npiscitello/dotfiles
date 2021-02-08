@@ -1,0 +1,6 @@
+mode=run
+location=top_left
+width=200
+height=95%
+gtk_dark=true
+hide_scroll=true
