@@ -1,3 +1,6 @@
+echo "UPDATE ME! I'm in the dotfiles repo..."
+exit 3
+
 echo "This utility will rebuild the kernel sources at '/usr/src/linux' and install them. It will then move"
 echo "the generated kernel from '/boot/vmlinuz-*' to '/boot/EFI/BOOT/BOOTX64.EFI' to make it bootable as an"
 echo "EFI stub (this is a workaround for the VirtualBox EFI implementation but should also work on hardware)"
