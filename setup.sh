@@ -66,6 +66,7 @@ HELP=help
 ALL=all
 VIM=vim
 SWAY=sway
+PORTAGE=portage
 UDEV=udev
 BASH=bash
 REPO=repo
@@ -88,6 +89,7 @@ helptext () {
   info "\t$ALL  - all configs (as if you passed every argument below)"
   info "\t$VIM  - the ~/.vim directory and the ~/.vimrc file"
   info "\t$SWAY - the Sway setup in the ~/.config directory and other graphical things"
+  info "\t$PORTAGE - Portage config files in the /etc/portage directory"
   info "\t$UDEV - udev rules in /etc/udev/rules.d (calls sudo)"
   info "\t$BASH - the ~/.bash_profile file"
   info "\t$REPO - the 'dotfiles' repo itself"
@@ -173,6 +175,28 @@ if [[ $COMPONENTS =~ $SWAY ]] || [[ $COMPONENTS =~ $ALL ]]; then
 
     $HELP)
       info "Valid actions on the $SWAY component: $INSTALL $REMOVE $HELP"
+      info ""
+      ;;
+
+    *)
+      bad_action $ACTION $SWAY
+  esac
+fi
+
+# Portage
+if [[ $COMPONENTS =~ $PORTAGE ]] || [[ $COMPONENTS =~ $ALL ]]; then
+  case $ACTION in
+    $INSTALL)
+      info "Installing Portage config..."
+      info "coming soon!"
+      ;;
+
+    $REMOVE)
+      warn "I'm quite sure you don't want to do that..."
+      ;;
+
+    $HELP)
+      info "Valid actions on the $PORTAGE component: $INSTALL $REMOVE $HELP"
       info ""
       ;;
 
