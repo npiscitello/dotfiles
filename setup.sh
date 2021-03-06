@@ -32,6 +32,14 @@ symlink () {
   fi 
 }
 
+symlink_sudo () { 
+  if sudo bash -c "[[ -e $2 ]]"; then
+    warn $2 "already exists, skipping"
+  else
+    sudo $SYMLN_CMD $1 $2
+  fi 
+}
+
 hardlink_sudo () {
   if sudo bash -c "[[ -e $2 ]]"; then
     warn $2 "already exists, skipping"
@@ -187,8 +195,13 @@ fi
 if [[ $COMPONENTS =~ $PORTAGE ]] || [[ $COMPONENTS =~ $ALL ]]; then
   case $ACTION in
     $INSTALL)
+      # these should all be owned by root and have 644 permissions
       info "Installing Portage config..."
-      info "coming soon!"
+      symlink_sudo $REPO_DIR/portage/make.conf /etc/portage/make.conf
+      symlink_sudo $REPO_DIR/portage/package.accept_keywords /etc/portage/package.accept_keywords
+      symlink_sudo $REPO_DIR/portage/package.license /etc/portage/package.license
+      symlink_sudo $REPO_DIR/portage/package.mask /etc/portage/package.mask
+      symlink_sudo $REPO_DIR/portage/package.use /etc/portage/package.use
       ;;
 
     $REMOVE)
