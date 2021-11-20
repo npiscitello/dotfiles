@@ -24,3 +24,6 @@ export QT_QPA_PLATFORM=wayland
 # for esp8266 development
 export IDF_PATH=~/sdk/ESP8266_RTOS_SDK
 alias idf_init="source $IDF_PATH/export.sh"
+
+# make python stuff work
+export PATH=$PATH:/home/npiscitello/.local/bin

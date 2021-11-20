@@ -21,6 +21,7 @@ error () { echo -e "\x1B[31m[ERR] " $@ "\x1B[0m"; }
 MKDIR_CMD="mkdir -vp"
 SYMLN_CMD="ln -vs"
 HRDLN_CMD="ln -v"
+COPY_CMD="cp -v"
 RM_CMD="rm -vr"
 EXEC_CMD="chmod +x"
 
@@ -45,6 +46,14 @@ hardlink_sudo () {
     warn $2 "already exists, skipping"
   else
     sudo $HRDLN_CMD $1 $2
+  fi
+}
+
+copy_sudo () {
+  if sudo bash -c "[[ -e $2 ]]"; then
+    warn $2 "already exists, skipping"
+  else
+    sudo $COPY_CMD $1 $2
   fi
 }
 
@@ -221,7 +230,9 @@ if [[ $COMPONENTS =~ $UDEV ]] || [[ $COMPONENTS =~ $ALL ]]; then
       info "Installing udev rules (calls sudo)..."
       cd udev
       for rule in *; do
-        hardlink_sudo $rule /etc/udev/rules.d/$rule
+#        hardlink_sudo $rule /etc/udev/rules.d/$rule
+#        symlink_sudo $REPO_DIR/udev/$rule /etc/udev/rules.d/$rule
+        copy_sudo $REPO_DIR/udev/$rule /etc/udev/rules.d/$rule
       done
       cd ..
       ;;

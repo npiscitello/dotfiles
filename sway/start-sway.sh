@@ -1,1 +1,2 @@
 sway
+dbus-launch
