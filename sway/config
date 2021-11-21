@@ -25,6 +25,10 @@ set $locker swaylock
 # browser
 set $browser qutebrowser
 
+# float certain apps by default
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable
+for_window [app_id="org.gnupg.pinentry-qt"] floating enable
+
 ### Output configuration
 # wallpaper
 output * bg ../../wallpaper.png fill
