@@ -28,6 +28,8 @@ set $browser qutebrowser
 # float certain apps by default
 for_window [app_id="org.keepassxc.KeePassXC"] floating enable
 for_window [app_id="org.gnupg.pinentry-qt"] floating enable
+for_window [title="Robot Simulation"] floating enable
+for_window [app_id="qalculate-gtk"] floating enable
 
 ### Output configuration
 # wallpaper

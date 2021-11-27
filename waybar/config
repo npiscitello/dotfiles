@@ -5,6 +5,7 @@
     "custom/l_keepass",
     "custom/l_term",
     "custom/l_browser",
+    "custom/l_calc",
     "custom/sep",
     "sway/workspaces",
     "sway/mode"
@@ -97,6 +98,12 @@
   "custom/l_browser": {
     "format": "    ",
     "on-click": "qutebrowser",
+    "tooltip": false
+  },
+
+  "custom/l_calc": {
+    "format": "  ",
+    "on-click": "qalculate-gtk",
     "tooltip": false
   },
 
