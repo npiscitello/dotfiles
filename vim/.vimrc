@@ -7,9 +7,9 @@ call vundle#begin()                         " start Vundle
 "Plugin 'VundleVim/Vundle.vim'     " let Vundle manage itself
 "
 " Vundle plugins
-Plugin 'Valloric/YouCompleteMe'             " autocompletion and syntax checking
+"Plugin 'Valloric/YouCompleteMe'             " autocompletion and syntax checking
 Plugin 'sjl/gundo.vim'                      " undo tree visualizer
-Plugin 'lervag/vimtex'                      " latex plugin
+"Plugin 'lervag/vimtex'                      " latex plugin
 Plugin 'altercation/vim-colors-solarized'   " color scheme
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'  " intelligent relative/absolute line numbering
 
