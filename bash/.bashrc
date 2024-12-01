@@ -21,6 +21,9 @@ export EDITOR=vim
 # make QT apps use wayland
 export QT_QPA_PLATFORM=wayland
 
+# make QT apps listen to the QT5 theme
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # make GTK apps use wayland
 export GDK_BACKEND=wayland
 
