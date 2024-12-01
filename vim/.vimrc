@@ -59,7 +59,7 @@ set nowrap                    " disables line wrapping
 set incsearch                 " show search results realtime
 set hlsearch                  " highlight search matches
 set ts=2 sw=2 sts=2           " set tabs to be 2 spaces
-set expandtab                 " tabs expand as spaces
+"set expandtab                " tabs expand as spaces
 set textwidth=80              " wrap lines to a reasonable width
 set splitbelow                " sp opens window below current window
 set splitright                " vsp opens window to the right of current window

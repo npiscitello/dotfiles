@@ -61,8 +61,8 @@
   },
 
   "pulseaudio": {
-    "format": "{volume}%  {icon}",
-    "format-muted": " -M-    ",
+    "format": "{volume}% {icon}",
+    "format-muted": "-M-  ",
     "scroll-step": 5,
     "format-icons": {
       "default": ""
