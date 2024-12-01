@@ -62,10 +62,10 @@
 
   "pulseaudio": {
     "format": "{volume}%  {icon}",
-    "format-muted": "-M-  ",
+    "format-muted": " -M-    ",
     "scroll-step": 5,
     "format-icons": {
-      "default": ""
+      "default": ""
     },
     "on-click": "pulsemixer --toggle-mute",
     "on-click-right": "kitty pulsemixer",
