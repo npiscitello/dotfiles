@@ -21,6 +21,9 @@ export EDITOR=vim
 # make QT apps use wayland
 export QT_QPA_PLATFORM=wayland
 
+# make GTK apps use wayland
+export GDK_BACKEND=wayland
+
 # for esp8266 development
 export IDF_PATH=~/sdk/ESP8266_RTOS_SDK
 alias idf_init="source $IDF_PATH/export.sh"
