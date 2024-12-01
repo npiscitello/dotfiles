@@ -2,6 +2,7 @@
 {
   "modules-left": [
     "custom/l_files",
+		"custom/l_email",
     "custom/l_keepass",
     "custom/l_term",
     "custom/l_browser",
@@ -23,6 +24,7 @@
     "clock#time",
     "custom/sep",
     "custom/poweroff",
+		"custom/logout",
     "custom/lock"
   ],
 
@@ -89,6 +91,12 @@
     "tooltip": false
   },
 
+	"custom/l_email": {
+		"format": "    ",
+		"on-click": "thunderbird",
+		"tooltip": false
+	},
+
   "custom/l_keepass": {
     "format": "    ",
     "on-click": "keepassxc",
@@ -113,9 +121,15 @@
     "tooltip": false
   },
 
+	"custom/logout": {
+		"format": "    ",
+		"on-click": "sway exit",
+		"tooltip": false
+	},
+
   "custom/poweroff": {
     "format": "    ",
-    "on-click": "sudo poweroff",
+    "on-click": "systemctl suspend",
     "tooltip": false
   }
 }
