@@ -6,6 +6,7 @@
     "custom/l_keepass",
     "custom/l_term",
     "custom/l_browser",
+		"custom/l_simplenote",
     "custom/l_calc",
     "custom/sep",
     "sway/workspaces",
@@ -109,8 +110,14 @@
     "tooltip": false
   },
 
+  "custom/l_simplenote": {
+    "format": "    ",
+    "on-click": "simplenote",
+    "tooltip": false
+  },
+
   "custom/l_calc": {
-    "format": "  ",
+    "format": "   ",
     "on-click": "qalculate-gtk",
     "tooltip": false
   },
