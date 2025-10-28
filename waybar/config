@@ -124,7 +124,7 @@
 
   "custom/lock": {
     "format": "    ",
-    "on-click": "swaylock",
+    "on-click": "swaylock -f",
     "tooltip": false
   },
 
@@ -136,7 +136,7 @@
 
   "custom/poweroff": {
     "format": "    ",
-    "on-click": "systemctl suspend",
+    "on-click": "swaylock -f && systemctl suspend; sway reload",
     "tooltip": false
   }
 }

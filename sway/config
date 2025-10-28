@@ -12,11 +12,14 @@ default_border pixel 2
 # make sure this matches the GTK config at ~/.config/gtk-3.0/settings.ini
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-	gsettings set $gnome-schema gtk-theme 'Clearlooks'
+	gsettings set $gnome-schema gtk-theme 'Midnight-Solarized'
 	gsettings set $gnome-schema icon-theme 'Adwaita'
 	gsettings set $gnome-schema cursor-theme 'Adwaita'
 	gsettings set $gnome-schema font-name 'League Spartan Semi-Light 12'
 }
+
+# start a polkit provider
+exec /usr/bin/lxpolkit
 
 ### Variables
 # Logo key (Mod4). Use Mod1 for Alt.
@@ -33,7 +36,7 @@ set $term kitty
 # application launcher
 set $menu wofi
 # screen locker
-set $locker swaylock
+set $locker swaylock -f
 # browser
 set $browser qutebrowser
 
@@ -89,7 +92,7 @@ bindsym $mod+Shift+e exit
 bindsym $mod+Escape exec $locker
 
 # suspend the computer to RAM
-bindsym $mod+Shift+Escape exec systemctl suspend
+bindsym $mod+Shift+Escape exec $locker && systemctl suspend; sway reload
 
 # turn off the computer
 bindsym $mod+Control+Shift+Escape exec sudo poweroff
