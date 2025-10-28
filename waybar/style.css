@@ -86,6 +86,7 @@ window#waybar.chromium {
 
 #clock {
     background-color: #282e33;
+		min-width: 70px;
 }
 
 #battery {
@@ -121,10 +122,12 @@ label:focus {
 
 #cpu {
     background-color: #282e33;
+		min-width: 100px;
 }
 
 #memory {
     background-color: #282e33;
+		min-width: 100px;
 }
 
 #backlight {

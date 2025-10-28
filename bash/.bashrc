@@ -3,6 +3,7 @@
 
 # aliases 
 # make ls easier to use
+alias ls="ls --color=always"
 alias ll="ls -hal"
 
 # easy sudo editing

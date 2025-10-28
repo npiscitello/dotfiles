@@ -1,6 +1,6 @@
 mode=run
 location=top_left
 width=200
-height=95%
+height=100%
 gtk_dark=true
 hide_scroll=true
